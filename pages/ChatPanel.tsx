@@ -20,9 +20,13 @@ import { MoreDropdownMenu } from "@/components/MoreDropdownMenu";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "usehooks-ts";
+import Image from "next/image";
 
 const tags = Array.from({ length: 50 }).map(
-  (_, i, a) => `v1.2.0-beta.${a.length - i}`
+  (_, i, a) =>
+    `v1.2.0-betasxbsjbdjdjhdjsjdshdjhsjdhsjhdjshdjshdjshdjhsjdhsjhdjshdjshdjshjdh.${
+      a.length - i
+    }`
 );
 
 const ChatPanel: React.FC = () => {
@@ -85,11 +89,38 @@ const ChatPanel: React.FC = () => {
               </div>
             </div>
             <Separator />
-            <ScrollArea className="h-[95%] w-full rounded-md pt-3">
+            <ScrollArea className="h-[95%]  rounded-md pt-4">
               <div>
                 {tags.map((tag) => (
                   <React.Fragment key={tag}>
-                    <div className="text-md">{tag}</div>
+                    <div className="flex items-center gap-2 w-full overflow-hidden">
+                      <Image
+                        src="/images/logo.png"
+                        alt="QR Test Image"
+                        width={40}
+                        height={40}
+                        className="rounded-full"
+                      />
+                      {/* <div className="text-md">{tag}</div> */}
+                      <div className="max-w-full overflow-hidden flex-shrink min-w-0 flex flex-col gap-1">
+                        <div className="flex gap-2 justify-between">
+                          <h4 className=" font-semibold tracking-tight overflow-hidden text-ellipsis whitespace-nowrap">
+                            {tag}
+                          </h4>
+                          <p className="text-muted-foreground text-sm block whitespace-nowrap">
+                            12:30 AM
+                          </p>
+                        </div>
+                        <div className="flex gap-2 justify-between">
+                          <p className="text-muted-foreground text-sm overflow-hidden text-ellipsis whitespace-nowrap">
+                            {tag}
+                          </p>
+                          <p className="text-sm font-semibold text-highlight-foreground">
+                            127
+                          </p>
+                        </div>
+                      </div>
+                    </div>
                     <Separator className="my-4" />
                   </React.Fragment>
                 ))}
