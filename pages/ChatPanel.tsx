@@ -21,6 +21,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMediaQuery } from "usehooks-ts";
 import Image from "next/image";
+import Settings from "@/components/Settings";
+import ProfileEdit from "@/components/ProfileEdit";
+import GeneralSettings from "@/components/GeneralSettings";
+import AnimationSettings from "@/components/AnimationSettings";
 
 const tags = Array.from({ length: 50 }).map(
   (_, i, a) =>
@@ -72,7 +76,7 @@ const ChatPanel: React.FC = () => {
 
   return (
     <div
-      className="relative "
+      className="relative"
       style={{ height: `calc(100dvh - ${keyboardHeight}px)` }}
     >
       <ResizablePanelGroup
@@ -80,12 +84,11 @@ const ChatPanel: React.FC = () => {
         className=" rounded-lg border md:min-w-[450px]"
       >
         <ResizablePanel key={panelSize} defaultSize={panelSize}>
-          <div className=" h-full items-center justify-center p-6 min-w-[260px]">
+          {/* <div className=" h-full items-center justify-center p-6 min-w-[260px]">
             <div>
               <div className="flex w-full justify-between pb-3 gap-2">
                 <MoreDropdownMenu />
                 <Input type="text" placeholder="Search" />
-                {/* <ModeToggle /> */}
               </div>
             </div>
             <Separator />
@@ -101,7 +104,6 @@ const ChatPanel: React.FC = () => {
                         height={40}
                         className="rounded-full"
                       />
-                      {/* <div className="text-md">{tag}</div> */}
                       <div className="max-w-full overflow-hidden flex-shrink min-w-0 flex flex-col gap-1">
                         <div className="flex gap-2 justify-between">
                           <h4 className=" font-semibold tracking-tight overflow-hidden text-ellipsis whitespace-nowrap">
@@ -126,7 +128,11 @@ const ChatPanel: React.FC = () => {
                 ))}
               </div>
             </ScrollArea>
-          </div>
+          </div> */}
+          {/* <Settings /> */}
+          {/* <ProfileEdit /> */}
+          {/* <GeneralSettings /> */}
+          <AnimationSettings />
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel
