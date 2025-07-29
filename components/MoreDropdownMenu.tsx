@@ -1,5 +1,4 @@
 "use client";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { MdMenuOpen } from "react-icons/md";
+import CircularIconButton from "./shared/CircularIconButton";
 import { IoMdAdd } from "react-icons/io";
 // import { FiPlayCircle } from "react-icons/fi";
 import { IoMdSave } from "react-icons/io";
@@ -47,9 +47,7 @@ export function MoreDropdownMenu() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="outline" className="rounded-full" size="icon">
-          <MdMenuOpen />
-        </Button>
+        <CircularIconButton icon={<MdMenuOpen />} />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="w-56" align="start">
         <DropdownMenuItem className="">

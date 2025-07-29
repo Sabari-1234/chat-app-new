@@ -23,10 +23,10 @@ import {
   DeviceMobile,
   Translate,
   Sticker,
-  Pencil,
-  Backspace,
 } from "phosphor-react";
 import { ScrollArea } from "./ui/scroll-area";
+import IconTextRow from "./shared/IconTextRow";
+import SettingsPageHeader from "./shared/SettingsPageHeader";
 
 const Settings = () => {
   const plugin = React.useRef(
@@ -35,21 +35,11 @@ const Settings = () => {
 
   return (
     <div className="min-w-[350px]">
-      <div className="flex w-full justify-between items-center px-4">
-        <Backspace
-          size={25}
-          className="text-icon-foreground shrink-0"
-          strokeWidth={1.5}
-        />
-        <h2 className="my-2  text-2xl font-bold tracking-tight  ">Settings</h2>
-        <Pencil
-          size={25}
-          className="text-icon-foreground shrink-0"
-          strokeWidth={1.5}
-        />
-      </div>
-
-      <Separator />
+      <SettingsPageHeader 
+        title="Settings" 
+        variant="between" 
+        showEditButton={true}
+      />
       <ScrollArea className="h-[93dvh]  rounded-md">
         <div className="flex flex-col items-center gap-2 py-2">
           <Carousel
@@ -79,136 +69,76 @@ const Settings = () => {
         </div>
         <Separator />
         <div className="ms-4 flex flex-col gap-6 my-6 pr-4">
-          <div className="flex items-center gap-7">
-            <Phone
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <div>
-              <p className="text-16 ">+91 9080240564</p>
-              <p className="text-muted-foreground text-sm">Phone</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-7">
-            <At
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-
-            <div>
-              <p className="text-16 ">@mr.360AndVk</p>
-              <p className="text-muted-foreground text-sm">Username</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-7">
-            <Info
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <div>
-              <p className="text-[16px] line-clamp-2">
-                dont bsjdbj sdbfj sbdjsbd kjbskjdbj jhjhjhj jhjh
-                fgfgfhfhgjhghgjgjg more text that overflows the 2-line limit
-                intentionally
-              </p>
-              <p className="text-muted-foreground text-sm">Bio</p>
-            </div>
-          </div>
-          <div className="flex items-center gap-7">
-            <CalendarBlank
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <div>
-              <p className="text-[16px]">August 5 (22 years old)</p>
-              <p className="text-muted-foreground text-sm">Date of Birth</p>
-            </div>
-          </div>
+          <IconTextRow
+            icon={<Phone size={30} strokeWidth={1.5} />}
+            title="+91 9080240564"
+            subtitle="Phone"
+          />
+          <IconTextRow
+            icon={<At size={30} strokeWidth={1.5} />}
+            title="@mr.360AndVk"
+            subtitle="Username"
+          />
+          <IconTextRow
+            icon={<Info size={30} strokeWidth={1.5} />}
+            title="dont bsjdbj sdbfj sbdjsbd kjbskjdbj jhjhjhj jhjh fgfgfhfhgjhghgjgjg more text that overflows the 2-line limit intentionally"
+            subtitle="Bio"
+          />
+          <IconTextRow
+            icon={<CalendarBlank size={30} strokeWidth={1.5} />}
+            title="August 5 (22 years old)"
+            subtitle="Date of Birth"
+          />
         </div>
         <Separator />
         <div className="ms-4 my-6 flex flex-col gap-6">
-          <div className="flex gap-7 items-center">
-            <GearSix
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">General Settings</p>
-          </div>
-          <div className="flex gap-7 items-center">
-            <Planet
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Animation and Performance</p>
-          </div>
-          <div className="flex gap-7 items-center">
-            <Bell
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Notification</p>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <Database
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Data and Storage</p>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <LockSimple
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Privacy and Security</p>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <Folders
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Chat Folders</p>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <DeviceMobile
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <div className=" flex justify-between w-full">
-              <p className="text-[16px]">Active Sessions</p>
-              <p className="text-[16px] text-muted-foreground me-4">5</p>
-            </div>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <Translate
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <div className=" flex justify-between w-full">
-              <p className="text-[16px]">Languages</p>
-              <p className="text-[16px] text-muted-foreground me-4">English</p>
-            </div>
-          </div>{" "}
-          <div className="flex gap-7 items-center">
-            <Sticker
-              size={30}
-              className="text-icon-foreground shrink-0"
-              strokeWidth={1.5}
-            />
-            <p className="text-[16px]">Stickers and Emoji</p>
-          </div>
+          <IconTextRow
+            icon={<GearSix size={30} strokeWidth={1.5} />}
+            title="General Settings"
+            onClick={() => console.log('General Settings clicked')}
+          />
+          <IconTextRow
+            icon={<Planet size={30} strokeWidth={1.5} />}
+            title="Animation and Performance"
+            onClick={() => console.log('Animation Settings clicked')}
+          />
+          <IconTextRow
+            icon={<Bell size={30} strokeWidth={1.5} />}
+            title="Notification"
+            onClick={() => console.log('Notification clicked')}
+          />
+          <IconTextRow
+            icon={<Database size={30} strokeWidth={1.5} />}
+            title="Data and Storage"
+            onClick={() => console.log('Data and Storage clicked')}
+          />
+          <IconTextRow
+            icon={<LockSimple size={30} strokeWidth={1.5} />}
+            title="Privacy and Security"
+            onClick={() => console.log('Privacy clicked')}
+          />
+          <IconTextRow
+            icon={<Folders size={30} strokeWidth={1.5} />}
+            title="Chat Folders"
+            onClick={() => console.log('Chat Folders clicked')}
+          />
+          <IconTextRow
+            icon={<DeviceMobile size={30} strokeWidth={1.5} />}
+            title="Active Sessions"
+            rightContent={<span className="text-[16px]">5</span>}
+            onClick={() => console.log('Active Sessions clicked')}
+          />
+          <IconTextRow
+            icon={<Translate size={30} strokeWidth={1.5} />}
+            title="Languages"
+            rightContent={<span className="text-[16px]">English</span>}
+            onClick={() => console.log('Languages clicked')}
+          />
+          <IconTextRow
+            icon={<Sticker size={30} strokeWidth={1.5} />}
+            title="Stickers and Emoji"
+            onClick={() => console.log('Stickers clicked')}
+          />
         </div>
       </ScrollArea>
     </div>

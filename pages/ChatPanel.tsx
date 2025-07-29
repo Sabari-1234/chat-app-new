@@ -5,33 +5,36 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
-// import { ModeToggle } from "@/components/ModeToggle";
 import { Textarea } from "@/components/ui/textarea";
-import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
-// import { PiPhoneLight } from "react-icons/pi";
-// import { CiSearch } from "react-icons/ci";
+import ChatHeader from "@/components/ChatHeader";
 import { AiOutlineMore } from "react-icons/ai";
 import { BsEmojiWink } from "react-icons/bs";
 import { RiAttachment2 } from "react-icons/ri";
 import { BsSend } from "react-icons/bs";
-import { MoreDropdownMenu } from "@/components/MoreDropdownMenu";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import ChatSidebar from "@/components/ChatSidebar";
+import CircularIconButton from "@/components/shared/CircularIconButton";
 import { useMediaQuery } from "usehooks-ts";
-import Image from "next/image";
-import Settings from "@/components/Settings";
 import ProfileEdit from "@/components/ProfileEdit";
+import Settings from "@/components/Settings";
 import GeneralSettings from "@/components/GeneralSettings";
 import AnimationSettings from "@/components/AnimationSettings";
 
-const tags = Array.from({ length: 50 }).map(
-  (_, i, a) =>
-    `v1.2.0-betasxbsjbdjdjhdjsjdshdjhsjdhsjhdjshdjshdjshdjhsjdhsjhdjshdjshdjshjdh.${
-      a.length - i
-    }`
-);
+const chatData = Array.from({ length: 50 }).map((_, i) => ({
+  id: `chat-${i}`,
+  name: `v1.2.0-betasxbsjbdjdjhdjsjdshdjhsjdhsjhdjshdjshdjshdjhsjdhsjhdjshdjshdjshjdh.${
+    50 - i
+  }`,
+  lastMessage: `v1.2.0-betasxbsjbdjdjhdjsjdshdjhsjdhsjhdjshdjshdjshdjhsjdhsjhdjshdjshdjshjdh.${
+    50 - i
+  }`,
+  timestamp: "12:30 AM",
+  unreadCount: 127,
+  avatar: {
+    src: "/images/logo.png",
+    alt: "QR Test Image",
+  },
+}));
 
 const ChatPanel: React.FC = () => {
   const [panelSize, setPanelSize] = useState(0);
@@ -84,51 +87,10 @@ const ChatPanel: React.FC = () => {
         className=" rounded-lg border md:min-w-[450px]"
       >
         <ResizablePanel key={panelSize} defaultSize={panelSize}>
-          {/* <div className=" h-full items-center justify-center p-6 min-w-[260px]">
-            <div>
-              <div className="flex w-full justify-between pb-3 gap-2">
-                <MoreDropdownMenu />
-                <Input type="text" placeholder="Search" />
-              </div>
-            </div>
-            <Separator />
-            <ScrollArea className="h-[95%]  rounded-md pt-4">
-              <div>
-                {tags.map((tag) => (
-                  <React.Fragment key={tag}>
-                    <div className="flex items-center gap-2 w-full overflow-hidden">
-                      <Image
-                        src="/images/logo.png"
-                        alt="QR Test Image"
-                        width={40}
-                        height={40}
-                        className="rounded-full"
-                      />
-                      <div className="max-w-full overflow-hidden flex-shrink min-w-0 flex flex-col gap-1">
-                        <div className="flex gap-2 justify-between">
-                          <h4 className=" font-semibold tracking-tight overflow-hidden text-ellipsis whitespace-nowrap">
-                            {tag}
-                          </h4>
-                          <p className="text-muted-foreground text-sm block whitespace-nowrap">
-                            12:30 AM
-                          </p>
-                        </div>
-                        <div className="flex gap-2 justify-between">
-                          <p className="text-muted-foreground text-sm overflow-hidden text-ellipsis whitespace-nowrap">
-                            {tag}
-                          </p>
-                          <p className="text-sm font-semibold text-highlight-foreground">
-                            127
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-                    <Separator className="my-4" />
-                  </React.Fragment>
-                ))}
-              </div>
-            </ScrollArea>
-          </div> */}
+          {/* <ChatSidebar
+            chats={chatData}
+            onChatSelect={(chatId) => console.log("Selected chat:", chatId)}
+          /> */}
           {/* <Settings /> */}
           {/* <ProfileEdit /> */}
           {/* <GeneralSettings /> */}
@@ -140,32 +102,19 @@ const ChatPanel: React.FC = () => {
           className="flex justify-center"
         >
           <div className="flex flex-col items-center xl:w-[50%] lg:w-[60%] md:w-[80%]  w-[90%] max-h-[100dvh] min-w-[350px]">
-            <div className="min-h-16 w-full flex items-center justify-between md:mt-5 ">
-              <div className="flex items-center w-[calc(100%-2.8rem)]">
-                <Avatar>
-                  <AvatarImage
-                    src="https://github.com/shadcn.png"
-                    alt="@shadcn"
-                    className="md:size-12 size-10 rounded-full md:min-w-12 md:min-h-12 min-w-10 min-h-10"
-                  />
-                  <AvatarFallback>CN</AvatarFallback>
-                </Avatar>
-                <p className=" ms-2 overflow-hidden text-ellipsis whitespace-nowrap text-lg inline">
-                  sabarinathanhsdghsdgsdbnsvdhdsvbvdfvdghvfhdvfhdvfhvdbfhdsbfhbdshfgh
-                </p>
-              </div>
-              <div className="flex items-center gap-2">
-                {/* <Button variant="outline" className="rounded-full" size="icon">
-                <CiSearch size={25} strokeWidth={0.5} />
-              </Button>
-              <Button variant="outline" className="rounded-full " size="icon">
-                <PiPhoneLight size={25} strokeWidth={3} />
-              </Button> */}
-                <Button variant="outline" className="rounded-full" size="icon">
-                  <AiOutlineMore size={25} strokeWidth={3} />
-                </Button>
-              </div>
-            </div>
+            <ChatHeader
+              avatar={{
+                src: "https://github.com/shadcn.png",
+                alt: "@shadcn",
+                fallback: "CN",
+              }}
+              name="sabarinathanhsdghsdgsdbnsvdhdsvbvdfvdghvfhdvfhdvfhvdbfhdsbfhbdshfgh"
+              actions={
+                <CircularIconButton
+                  icon={<AiOutlineMore size={25} strokeWidth={3} />}
+                />
+              }
+            />
             <Separator />
             <div className="transition-all duration-300 w-full overflow-y-auto pt-4 h-[85vh]">
               <div className=" w-full flex flex-col items-start">
@@ -184,31 +133,22 @@ const ChatPanel: React.FC = () => {
 
             <Separator />
             <div className="w-full relative flex items-center">
-              <Button
-                variant="outline"
-                className="rounded-full absolute md:bottom-[3.4rem] bottom-[1.7rem] left-2"
-                size="icon"
-              >
-                <BsEmojiWink />
-              </Button>
+              <CircularIconButton
+                icon={<BsEmojiWink />}
+                className="absolute md:bottom-[3.4rem] bottom-[1.7rem] left-2"
+              />
               <Textarea
                 placeholder="Type your message here."
                 className=" max-h-40 resize-none md:mb-11 mb-5 mt-2 md:py-4 py-3 px-12 w-[calc(100%-2.8rem)]"
               />
-              <Button
-                variant="outline"
-                className="rounded-full absolute md:bottom-[3.4rem] bottom-[1.7rem] right-13"
-                size="icon"
-              >
-                <RiAttachment2 />
-              </Button>
-              <Button
-                variant="outline"
-                className="rounded-full absolute right-0  md:bottom-[3.4rem] bottom-[1.7rem]"
-                size="icon"
-              >
-                <BsSend />
-              </Button>
+              <CircularIconButton
+                icon={<RiAttachment2 />}
+                className="absolute md:bottom-[3.4rem] bottom-[1.7rem] right-13"
+              />
+              <CircularIconButton
+                icon={<BsSend />}
+                className="absolute right-0 md:bottom-[3.4rem] bottom-[1.7rem]"
+              />
             </div>
           </div>
         </ResizablePanel>

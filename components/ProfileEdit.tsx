@@ -1,25 +1,16 @@
-import { Backspace, CameraRotate } from "phosphor-react";
+import { CameraRotate } from "phosphor-react";
 import React from "react";
-import { Separator } from "./ui/separator";
 import { ScrollArea } from "./ui/scroll-area";
+import { Separator } from "./ui/separator";
 import Image from "next/image";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
+import SettingsPageHeader from "./shared/SettingsPageHeader";
 
 const ProfileEdit = () => {
   return (
     <div className="min-w-[350px] my-4">
-      <div className="relative flex w-full items-center px-4 mb-4">
-        <Backspace
-          size={25}
-          className="text-icon-foreground shrink-0 hover:cursor-pointer"
-          strokeWidth={1.5}
-        />
-        <h2 className="absolute left-1/2 transform -translate-x-1/2 text-2xl font-bold tracking-tight">
-          Edit profile
-        </h2>
-      </div>
-      <Separator />
+      <SettingsPageHeader title="Edit profile" />
       <ScrollArea className="  rounded-md">
         <div className="flex flex-col  items-center mt-6 relative">
           <Image

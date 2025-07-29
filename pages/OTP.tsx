@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import React from "react";
 import { GrEdit } from "react-icons/gr";
 import {
@@ -7,17 +6,17 @@ import {
   InputOTPSeparator,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
+import CenteredPageLayout from "@/components/shared/CenteredPageLayout";
+import CircularIconButton from "@/components/shared/CircularIconButton";
 
 const OTP = () => {
   return (
-    <div className="flex flex-col justify-center items-center h-[100dvh] gap-6 min-w-[400px]">
+    <CenteredPageLayout contentClassName="gap-6">
       <div className="flex items-center gap-4">
         <h1 className="text-4xl font-extrabold tracking-tight text-balance">
           +91 9080240564
         </h1>
-        <Button variant="outline" className="rounded-full" size="icon">
-          <GrEdit />
-        </Button>
+        <CircularIconButton icon={<GrEdit />} />
       </div>
       <div className="flex flex-col items-center">
         <p className="text-sm text-muted-foreground">
@@ -38,7 +37,7 @@ const OTP = () => {
           <InputOTPSlot index={5} />
         </InputOTPGroup>
       </InputOTP>
-    </div>
+    </CenteredPageLayout>
   );
 };
 

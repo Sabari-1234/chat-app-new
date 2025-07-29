@@ -1,13 +1,14 @@
-// import OTP from "@/pages/OTP";
+import OTP from "@/pages/OTP";
 import PhoneNumberLogIn from "@/pages/PhoneNumberLogIn";
-// import QRLogIn from "@/components/QRLogIn";
+import QRLogIn from "@/pages/QRLogIn";
+
 import React from "react";
 
 export default function ChatWindow() {
   return (
     <div>
-      {/* <QRLogIn /> */}
-      <PhoneNumberLogIn />
+      <QRLogIn />
+      {/* <PhoneNumberLogIn /> */}
       {/* <OTP /> */}
     </div>
   );
