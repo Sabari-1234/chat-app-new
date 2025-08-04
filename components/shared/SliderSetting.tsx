@@ -1,6 +1,7 @@
 import React from "react";
 import { Slider } from "@/components/ui/slider";
-import { cn } from "@/lib/utils";
+import IconTextRow from "./IconTextRow";
+import SectionWrapper from "./SectionWrapper";
 
 interface SliderSettingProps {
   label: string;
@@ -11,6 +12,8 @@ interface SliderSettingProps {
   defaultValue?: number[];
   onChange?: (value: number[]) => void;
   className?: string;
+  labels?: string[];
+  thresholds?: number[];
 }
 
 const SliderSetting: React.FC<SliderSettingProps> = ({
@@ -21,14 +24,25 @@ const SliderSetting: React.FC<SliderSettingProps> = ({
   step = 1,
   defaultValue = [50],
   onChange,
-  className,
+  labels,
+  thresholds = [40, 80],
 }) => {
+  const getActiveLabel = (currentValue: number) => {
+    if (!labels) return -1;
+    for (let i = 0; i < thresholds.length; i++) {
+      if (currentValue < thresholds[i]) return i;
+    }
+    return thresholds.length;
+  };
+
   return (
-    <div className={cn("flex flex-col gap-4", className)}>
-      <div className="flex justify-between">
-        <p className="text-[16px]">{label}</p>
-        <p className="text-[16px]">{value}</p>
-      </div>
+    <SectionWrapper className="gap-2 p-2">
+      <IconTextRow
+        title={label}
+        rightContent={value}
+        hoverEffectNeeded={false}
+        className="-p-2 "
+      />
       <Slider
         min={min}
         max={max}
@@ -37,7 +51,23 @@ const SliderSetting: React.FC<SliderSettingProps> = ({
         onValueChange={onChange}
         className="w-[100%] cursor-pointer"
       />
-    </div>
+      {labels && (
+        <div className="flex justify-between text-sm">
+          {labels.map((label, index) => (
+            <span
+              key={label}
+              className={
+                getActiveLabel(value) === index
+                  ? "text-primary font-medium"
+                  : "text-muted-foreground"
+              }
+            >
+              {label}
+            </span>
+          ))}
+        </div>
+      )}
+    </SectionWrapper>
   );
 };
 

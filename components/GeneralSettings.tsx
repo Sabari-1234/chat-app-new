@@ -1,82 +1,125 @@
+import React, { useState } from "react";
 import { Image } from "phosphor-react";
-import React from "react";
-import { ScrollArea } from "./ui/scroll-area";
 import { Separator } from "./ui/separator";
+import { Slider } from "./ui/slider";
 import RadioGroupSetting from "./shared/RadioGroupSetting";
-import SettingsPageHeader from "./shared/SettingsPageHeader";
+import IconTextRow from "./shared/IconTextRow";
+import SectionTitle from "./shared/SectionTitle";
+import PageWrapper from "./shared/PageWrapper";
+import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
 
-const GeneralSettings = () => {
+interface GeneralSettingsState {
+  messageFontSize: number[];
+  theme: string;
+  timeFormat: string;
+  keyboardShortcut: string;
+}
+
+const GeneralSettings: React.FC = () => {
+  const [settings, setSettings] = useState<GeneralSettingsState>({
+    messageFontSize: [15],
+    theme: "comfortable",
+    timeFormat: "comfortable",
+    keyboardShortcut: "comfortable",
+  });
+
+  const handleSliderChange = (value: number[]) => {
+    setSettings((prev) => ({ ...prev, messageFontSize: value }));
+  };
+
+  const handleThemeChange = (value: string) => {
+    setSettings((prev) => ({ ...prev, theme: value }));
+  };
+
+  const handleTimeFormatChange = (value: string) => {
+    setSettings((prev) => ({ ...prev, timeFormat: value }));
+  };
+
+  const handleKeyboardChange = (value: string) => {
+    setSettings((prev) => ({ ...prev, keyboardShortcut: value }));
+  };
+
   return (
-    <div className="min-w-[350px] my-4">
-      <SettingsPageHeader title="General" />
-      <ScrollArea className="h-[93dvh]  rounded-md px-6">
-        <div className="flex flex-col gap-6 my-4">
-          <div className="text-lg font-semibold">Settings</div>
-          <SliderSetting
-            label="Message Font Size"
-            value={15}
-            min={12}
-            max={20}
-            step={1}
-            defaultValue={[15]}
-          />
-          <div className="flex items-center gap-7">
-            <Image
-              size={30}
-              className="text-icon-foreground shrink-0 hover:cursor-pointer"
-              strokeWidth={1.5}
-              alt=""
-            />
-            <p className="text-[16px]">General Settings</p>
-          </div>
-        </div>
-        <Separator />
-        <div className="flex flex-col gap-6 my-4">
-          <div className="text-lg font-semibold">Theme</div>
-          <RadioGroupSetting
-            defaultValue="comfortable"
-            options={[
-              { value: "default", label: "Light", id: "theme-light" },
-              { value: "comfortable", label: "Dark", id: "theme-dark" },
-              { value: "compact", label: "System", id: "theme-system" }
-            ]}
-          />
-        </div>
-        <Separator />
-        <div className="flex flex-col gap-6 my-4">
-          <div className="text-lg font-semibold">Time Format</div>
-          <RadioGroupSetting
-            defaultValue="comfortable"
-            options={[
-              { value: "default", label: "12-hour", id: "time-12" },
-              { value: "comfortable", label: "24-hour", id: "time-24" }
-            ]}
-          />
-        </div>
-        <Separator />
-        <div className="flex flex-col gap-6 my-4">
-          <div className="text-lg font-semibold ">Keyboard</div>
-          <RadioGroupSetting
-            defaultValue="comfortable"
-            options={[
-              { 
-                value: "default", 
-                label: "Send with Enter", 
-                subtitle: "Press Shift+Enter for New line",
-                id: "keyboard-enter" 
-              },
-              { 
-                value: "comfortable", 
-                label: "Send with Cmd+Enter", 
-                subtitle: "Press Enter for New line",
-                id: "keyboard-cmd" 
-              }
-            ]}
-          />
-        </div>
-      </ScrollArea>
-    </div>
+    <PageWrapper title="General" variant="full-width">
+      {/* Settings Section */}
+      <SectionWrapper>
+        <SectionTitle>Settings</SectionTitle>
+
+        {/* Message Font Size */}
+        <SliderSetting
+          label="Message Font Size"
+          value={settings.messageFontSize[0]}
+          onChange={handleSliderChange}
+          min={12}
+          max={20}
+          step={1}
+        />
+
+        {/* General Settings Row */}
+        <IconTextRow
+          icon={<Image size={30} strokeWidth={1.5} alt="" />}
+          title="General Settings"
+          onClick={() => console.log("General Settings clicked")}
+        />
+      </SectionWrapper>
+
+      <Separator />
+
+      {/* Theme Section */}
+      <SectionWrapper>
+        <SectionTitle>Theme</SectionTitle>
+        <RadioGroupSetting
+          value={settings.theme}
+          onValueChange={handleThemeChange}
+          options={[
+            { value: "default", label: "Light", id: "theme-light" },
+            { value: "comfortable", label: "Dark", id: "theme-dark" },
+            { value: "compact", label: "System", id: "theme-system" },
+          ]}
+        />
+      </SectionWrapper>
+
+      <Separator />
+
+      {/* Time Format Section */}
+      <SectionWrapper>
+        <SectionTitle>Time Format</SectionTitle>
+        <RadioGroupSetting
+          value={settings.timeFormat}
+          onValueChange={handleTimeFormatChange}
+          options={[
+            { value: "default", label: "12-hour", id: "time-12" },
+            { value: "comfortable", label: "24-hour", id: "time-24" },
+          ]}
+        />
+      </SectionWrapper>
+
+      <Separator />
+
+      {/* Keyboard Section */}
+      <SectionWrapper>
+        <SectionTitle>Keyboard</SectionTitle>
+        <RadioGroupSetting
+          value={settings.keyboardShortcut}
+          onValueChange={handleKeyboardChange}
+          options={[
+            {
+              value: "default",
+              label: "Send with Enter",
+              subtitle: "Press Shift+Enter for New line",
+              id: "keyboard-enter",
+            },
+            {
+              value: "comfortable",
+              label: "Send with Cmd+Enter",
+              subtitle: "Press Enter for New line",
+              id: "keyboard-cmd",
+            },
+          ]}
+        />
+      </SectionWrapper>
+    </PageWrapper>
   );
 };
 

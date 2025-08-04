@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/resizable";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
-import ChatHeader from "@/components/ChatHeader";
+import ChatHeader from "@/components/shared/ChatHeader";
 import { AiOutlineMore } from "react-icons/ai";
 import { BsEmojiWink } from "react-icons/bs";
 import { RiAttachment2 } from "react-icons/ri";
@@ -19,6 +19,11 @@ import ProfileEdit from "@/components/ProfileEdit";
 import Settings from "@/components/Settings";
 import GeneralSettings from "@/components/GeneralSettings";
 import AnimationSettings from "@/components/AnimationSettings";
+import NotificationSettings from "@/components/NotificationSettings";
+import DataAndStorageSettings from "@/components/DataAndStorageSettings";
+import PrivacyAndSecurity from "@/components/PrivacyAndSecurity";
+import ChatFolder from "@/components/ChatFolder";
+import DevicesSettings from "@/components/DevicesSettings";
 
 const chatData = Array.from({ length: 50 }).map((_, i) => ({
   id: `chat-${i}`,
@@ -39,14 +44,14 @@ const chatData = Array.from({ length: 50 }).map((_, i) => ({
 const ChatPanel: React.FC = () => {
   const [panelSize, setPanelSize] = useState(0);
   const isMobile = useMediaQuery("(max-width: 639px)");
-  const isTablet = useMediaQuery("(min-width: 640px) and (max-width: 1023px)");
+  const isTablet = useMediaQuery("(min-width: 640px) and (max-width: 1300px)");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const initialHeightRef = useRef<number | null>(null);
 
   useEffect(() => {
     let newSize: number | null = null;
     if (isMobile) newSize = 100;
-    else if (isTablet) newSize = 40;
+    else if (isTablet) newSize = 38;
     else newSize = 25;
     setPanelSize((prevSize) => (prevSize === newSize ? prevSize : newSize));
   }, [isMobile, isTablet]);
@@ -94,7 +99,12 @@ const ChatPanel: React.FC = () => {
           {/* <Settings /> */}
           {/* <ProfileEdit /> */}
           {/* <GeneralSettings /> */}
-          <AnimationSettings />
+          {/* <AnimationSettings /> */}
+          {/* <NotificationSettings /> */}
+          {/* <DataAndStorageSettings /> */}
+          {/* <PrivacyAndSecurity /> */}
+          {/* <ChatFolder /> */}
+          <DevicesSettings />
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel

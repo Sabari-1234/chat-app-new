@@ -8,7 +8,7 @@ interface SettingsPageHeaderProps {
   onBack?: () => void;
   onEdit?: () => void;
   showEditButton?: boolean;
-  variant?: 'centered' | 'between' | 'full-width';
+  variant?: "centered" | "between" | "full-width";
   className?: string;
 }
 
@@ -17,13 +17,18 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
   onBack,
   onEdit,
   showEditButton = false,
-  variant = 'centered',
+  variant = "centered",
   className,
 }) => {
-  if (variant === 'between') {
+  if (variant === "between") {
     return (
       <>
-        <div className={cn("flex w-full justify-between items-center px-4", className)}>
+        <div
+          className={cn(
+            "flex w-full justify-between items-center px-4",
+            className
+          )}
+        >
           <Backspace
             size={25}
             className="text-icon-foreground shrink-0 hover:cursor-pointer"
@@ -45,10 +50,10 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
     );
   }
 
-  if (variant === 'full-width') {
+  if (variant === "full-width") {
     return (
       <>
-        <div className={cn("relative flex w-full items-center px-4 mb-4", className)}>
+        <div className={cn("relative flex w-full items-center p-4", className)}>
           <Backspace
             size={25}
             className="text-icon-foreground shrink-0 hover:cursor-pointer"
@@ -66,7 +71,7 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
 
   return (
     <>
-      <div className={cn("relative flex w-full items-center px-4 mb-4", className)}>
+      <div className={cn("relative flex w-full items-center p-4", className)}>
         <Backspace
           size={25}
           className="text-icon-foreground shrink-0 hover:cursor-pointer"

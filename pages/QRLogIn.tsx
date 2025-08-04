@@ -4,7 +4,7 @@ import { Separator } from "../components/ui/separator";
 import { Button } from "../components/ui/button";
 const QRLogIn = () => {
   return (
-    <div className="flex md:flex-row flex-col justify-center items-center h-[100dvh] md:gap-14 gap-8 min-w-[400px]">
+    <div className="flex  flex-col justify-center items-center h-[100dvh] md:gap-14 gap-8 min-w-[400px]">
       <Image
         src="/images/QR.png"
         alt="QR Test Image"

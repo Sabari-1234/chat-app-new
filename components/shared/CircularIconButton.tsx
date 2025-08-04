@@ -2,34 +2,32 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-interface CircularIconButtonProps {
+interface CircularIconButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   icon: React.ReactNode;
-  onClick?: () => void;
   variant?: "outline" | "default" | "destructive" | "secondary" | "ghost" | "link";
   size?: "default" | "sm" | "lg" | "icon";
-  className?: string;
-  disabled?: boolean;
 }
 
-const CircularIconButton: React.FC<CircularIconButtonProps> = ({
+const CircularIconButton = React.forwardRef<HTMLButtonElement, CircularIconButtonProps>(({
   icon,
-  onClick,
   variant = "outline",
   size = "icon",
   className,
-  disabled = false,
-}) => {
+  ...props
+}, ref) => {
   return (
     <Button
+      ref={ref}
       variant={variant}
       size={size}
       className={cn("rounded-full", className)}
-      onClick={onClick}
-      disabled={disabled}
+      {...props}
     >
       {icon}
     </Button>
   );
-};
+});
+
+CircularIconButton.displayName = "CircularIconButton";
 
 export default CircularIconButton;
