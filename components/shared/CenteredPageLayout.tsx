@@ -22,7 +22,10 @@ const CenteredPageLayout: React.FC<CenteredPageLayoutProps> = ({
       )}
     >
       <div
-        className={cn("flex flex-col justify-center items-center", contentClassName)}
+        className={cn(
+          "flex flex-col justify-center items-center",
+          contentClassName
+        )}
         style={{ minWidth }}
       >
         {children}

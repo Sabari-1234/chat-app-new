@@ -1,5 +1,5 @@
 import React from "react";
-import { cn } from "@/lib/utils";
+import { Text } from "./Text";
 
 interface SectionTitleProps {
   children: React.ReactNode;
@@ -7,9 +7,9 @@ interface SectionTitleProps {
 
 const SectionTitle: React.FC<SectionTitleProps> = ({ children }) => {
   return (
-    <div className={cn("text-lg font-semibold text-muted-foreground p-2")}>
+    <Text variant="lg" className="p-2">
       {children}
-    </div>
+    </Text>
   );
 };
 

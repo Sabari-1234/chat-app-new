@@ -1,6 +1,7 @@
 import React from "react";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+// import IconTextRow from "./shared/IconTextRow";
 
 interface ChatListItemProps {
   avatar: {
@@ -24,7 +25,10 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
 }) => {
   return (
     <React.Fragment>
-      <div className="flex items-center gap-2 w-full overflow-hidden" onClick={onClick}>
+      <div
+        className="flex items-center gap-2 w-full overflow-hidden cursor-pointer"
+        onClick={onClick}
+      >
         <Image
           src={avatar.src}
           alt={avatar.alt}
@@ -53,6 +57,13 @@ const ChatListItem: React.FC<ChatListItemProps> = ({
           </div>
         </div>
       </div>
+      {/* <IconTextRow  icon={ <Image
+          src={avatar.src}
+          alt={avatar.alt}
+          width={40}
+          height={40}
+          className="rounded-full"
+        />} title={name} rightContent={timestamp} subtitle={lastMessage} subTitleRightContent={unreadCount}/> */}
       <Separator className="my-4" />
     </React.Fragment>
   );

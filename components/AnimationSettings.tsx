@@ -9,6 +9,7 @@ import SecondarySectionHeading from "./shared/SecondarySectionHeading";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface AnimationSettingsState {
   interfaceAnimations: boolean;
@@ -59,6 +60,7 @@ const ToggleWrapper: React.FC<SectionWrapperProps> = ({ children }) => {
 };
 
 const AnimationSettings: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [animationLevel, setAnimationLevel] = useState<number[]>([100]);
   const [interfaceAnimationsExpanded, setInterfaceAnimationsExpanded] =
     useState<boolean>(true);
@@ -98,7 +100,11 @@ const AnimationSettings: React.FC = () => {
   };
 
   return (
-    <PageWrapper title="Animation And Performance" variant="full-width">
+    <PageWrapper 
+      title="Animation And Performance" 
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       {/* Animation Level Section */}
       <SectionWrapper>
         <SectionTitle>Animation Level</SectionTitle>

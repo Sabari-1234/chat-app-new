@@ -5,6 +5,7 @@ import SectionTitle from "./shared/SectionTitle";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface DataAndStorageSettingsState {
   autoDownloadPhotos: {
@@ -28,6 +29,7 @@ interface DataAndStorageSettingsState {
 }
 
 const DataAndStorageSettings: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [maximumFileSize, setMaximumFileSize] = useState<number[]>([10]);
 
   const [settings, setSettings] = useState<DataAndStorageSettingsState>({
@@ -70,7 +72,7 @@ const DataAndStorageSettings: React.FC = () => {
   };
 
   return (
-    <PageWrapper title="Data and Storage" variant="full-width">
+    <PageWrapper title="Data and Storage" variant="full-width" onBack={() => setLeftPanel("settings")}>
       {/* Auto-download photos Section */}
       <SectionWrapper>
         <SectionTitle>Auto-download photos</SectionTitle>

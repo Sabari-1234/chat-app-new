@@ -43,7 +43,10 @@ const RadioGroupSetting: React.FC<RadioGroupSettingProps> = ({
           />
 
           <div>
-            <Label htmlFor={option.id} className="text-[16px] cursor-pointer">
+            <Label
+              htmlFor={option.id}
+              className="text-[16px] cursor-pointer font-medium"
+            >
               {option.label}
             </Label>
             {option.subtitle && (

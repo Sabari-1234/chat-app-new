@@ -53,14 +53,16 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
   if (variant === "full-width") {
     return (
       <>
-        <div className={cn("relative flex w-full items-center p-4", className)}>
+        <div
+          className={cn("relative flex w-full items-center px-4", className)}
+        >
           <Backspace
             size={25}
             className="text-icon-foreground shrink-0 hover:cursor-pointer"
             strokeWidth={1.5}
             onClick={onBack}
           />
-          <h2 className="text-2xl font-bold tracking-tight w-full text-center">
+          <h2 className="my-2 text-2xl font-bold tracking-tight w-full text-center">
             {title}
           </h2>
         </div>
@@ -71,10 +73,10 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
 
   return (
     <>
-      <div className={cn("relative flex w-full items-center p-4", className)}>
+      <div className={cn("relative flex w-full items-center px-4", className)}>
         <Backspace
           size={25}
-          className="text-icon-foreground shrink-0 hover:cursor-pointer"
+          className="my-2 text-icon-foreground shrink-0 hover:cursor-pointer"
           strokeWidth={1.5}
           onClick={onBack}
         />

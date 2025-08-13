@@ -8,6 +8,7 @@ import SectionTitle from "./shared/SectionTitle";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface GeneralSettingsState {
   messageFontSize: number[];
@@ -17,6 +18,7 @@ interface GeneralSettingsState {
 }
 
 const GeneralSettings: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [settings, setSettings] = useState<GeneralSettingsState>({
     messageFontSize: [15],
     theme: "comfortable",
@@ -41,31 +43,22 @@ const GeneralSettings: React.FC = () => {
   };
 
   return (
-    <PageWrapper title="General" variant="full-width">
+    <PageWrapper
+      title="General Settings"
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       {/* Settings Section */}
       <SectionWrapper>
-        <SectionTitle>Settings</SectionTitle>
-
-        {/* Message Font Size */}
-        <SliderSetting
-          label="Message Font Size"
-          value={settings.messageFontSize[0]}
-          onChange={handleSliderChange}
-          min={12}
-          max={20}
-          step={1}
-        />
-
+        <SectionTitle>Wallpaper</SectionTitle>
         {/* General Settings Row */}
         <IconTextRow
-          icon={<Image size={30} strokeWidth={1.5} alt="" />}
-          title="General Settings"
+          icon={<Image size={24} strokeWidth={1.5} alt="" />}
+          title="Change Chat Wallpaper"
           onClick={() => console.log("General Settings clicked")}
         />
       </SectionWrapper>
-
       <Separator />
-
       {/* Theme Section */}
       <SectionWrapper>
         <SectionTitle>Theme</SectionTitle>
@@ -73,9 +66,24 @@ const GeneralSettings: React.FC = () => {
           value={settings.theme}
           onValueChange={handleThemeChange}
           options={[
-            { value: "default", label: "Light", id: "theme-light" },
-            { value: "comfortable", label: "Dark", id: "theme-dark" },
-            { value: "compact", label: "System", id: "theme-system" },
+            {
+              value: "default",
+              label: "Light Mode",
+              // subtitle: "Recommended for day use",
+              id: "theme-light",
+            },
+            {
+              value: "comfortable",
+              label: "Dark Mode",
+              // subtitle: "Recommended for Night use",
+              id: "theme-dark",
+            },
+            {
+              value: "compact",
+              label: "System Default",
+              // subtitle: "Based on system theme",
+              id: "theme-system",
+            },
           ]}
         />
       </SectionWrapper>
@@ -89,8 +97,18 @@ const GeneralSettings: React.FC = () => {
           value={settings.timeFormat}
           onValueChange={handleTimeFormatChange}
           options={[
-            { value: "default", label: "12-hour", id: "time-12" },
-            { value: "comfortable", label: "24-hour", id: "time-24" },
+            {
+              value: "default",
+              label: "12 Hours time Format",
+              subtitle: "Eg., 12 : 40 PM",
+              id: "time-12",
+            },
+            {
+              value: "comfortable",
+              label: "24 Hours time Format",
+              subtitle: "Eg., 19 : 56",
+              id: "time-24",
+            },
           ]}
         />
       </SectionWrapper>
@@ -117,6 +135,21 @@ const GeneralSettings: React.FC = () => {
               id: "keyboard-cmd",
             },
           ]}
+        />
+      </SectionWrapper>
+
+      <Separator />
+
+      {/* Message Font Size */}
+      <SectionWrapper>
+        <SectionTitle>Font Size</SectionTitle>
+        <SliderSetting
+          label="Message Font Size"
+          value={settings.messageFontSize[0]}
+          onChange={handleSliderChange}
+          min={12}
+          max={20}
+          step={1}
         />
       </SectionWrapper>
     </PageWrapper>

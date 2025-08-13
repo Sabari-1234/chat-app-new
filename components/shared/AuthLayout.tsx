@@ -3,6 +3,7 @@ import CenteredPageLayout from "./CenteredPageLayout";
 import ProfileAvatar from "./ProfileAvatar";
 import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils";
+import SectionWrapper from "./SectionWrapper";
 
 interface AuthLayoutProps {
   children: React.ReactNode;
@@ -37,13 +38,13 @@ const AuthLayout: React.FC<AuthLayoutProps> = ({
         {title}
       </h2>
       {subtitle && (
-        <div className="flex flex-col items-center text-center">
+        <SectionWrapper variant="columnCenter" className="text-center">
           {typeof subtitle === "string" ? (
             <p className="text-muted-foreground">{subtitle}</p>
           ) : (
             subtitle
           )}
-        </div>
+        </SectionWrapper>
       )}
       <Separator />
       {children}

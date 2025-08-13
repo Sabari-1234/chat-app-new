@@ -11,6 +11,7 @@ interface CheckboxFieldProps {
   description?: string;
   showEnabledStatus?: boolean;
   className?: string;
+  hoverEffectNeeded?: boolean;
 }
 
 const CheckboxField: React.FC<CheckboxFieldProps> = ({
@@ -20,6 +21,8 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   title,
   description,
   showEnabledStatus = false,
+  hoverEffectNeeded = true,
+  className,
 }) => {
   const getStatusText = () => {
     if (showEnabledStatus) {
@@ -36,7 +39,10 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
   };
 
   return (
-    <InteractiveItemWrapper>
+    <InteractiveItemWrapper
+      hoverEffectNeeded={hoverEffectNeeded}
+      className={className}
+    >
       <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} />
       <div className="flex flex-col">
         <Label htmlFor={id} className="text-[16px] cursor-pointer font-medium">

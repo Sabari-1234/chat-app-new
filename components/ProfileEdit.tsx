@@ -6,10 +6,17 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 const ProfileEdit = () => {
+  const { setLeftPanel } = useLeftPanel();
+  
   return (
-    <PageWrapper title="Edit profile" variant="full-width">
+    <PageWrapper 
+      title="Edit profile" 
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       <SectionWrapper className="items-center relative">
         <Image
           src="/images/logo.png"

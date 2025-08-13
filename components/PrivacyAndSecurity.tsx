@@ -6,6 +6,7 @@ import SectionTitle from "./shared/SectionTitle";
 import IconTextRow from "./shared/IconTextRow";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface PrivacySettingsState {
   show18PlusContent: boolean;
@@ -13,6 +14,7 @@ interface PrivacySettingsState {
 }
 
 const PrivacyAndSecurity: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [settings, setSettings] = useState<PrivacySettingsState>({
     show18PlusContent: true,
     showChatName: true,
@@ -55,7 +57,7 @@ const PrivacyAndSecurity: React.FC = () => {
   );
 
   return (
-    <PageWrapper title="Privacy and Security" variant="full-width">
+    <PageWrapper title="Privacy and Security" variant="full-width" onBack={() => setLeftPanel("settings")}>
       {/* Security Section */}
       <SectionWrapper>
         <IconTextRow

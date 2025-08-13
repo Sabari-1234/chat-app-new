@@ -24,6 +24,8 @@ import DataAndStorageSettings from "@/components/DataAndStorageSettings";
 import PrivacyAndSecurity from "@/components/PrivacyAndSecurity";
 import ChatFolder from "@/components/ChatFolder";
 import DevicesSettings from "@/components/DevicesSettings";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
+import AnimatedLeftPanel from "@/components/shared/AnimatedLeftPanel";
 
 const chatData = Array.from({ length: 50 }).map((_, i) => ({
   id: `chat-${i}`,
@@ -47,6 +49,7 @@ const ChatPanel: React.FC = () => {
   const isTablet = useMediaQuery("(min-width: 640px) and (max-width: 1300px)");
   const [keyboardHeight, setKeyboardHeight] = useState(0);
   const initialHeightRef = useRef<number | null>(null);
+  const { leftPanel } = useLeftPanel();
 
   useEffect(() => {
     let newSize: number | null = null;
@@ -92,19 +95,41 @@ const ChatPanel: React.FC = () => {
         className=" rounded-lg border md:min-w-[450px]"
       >
         <ResizablePanel key={panelSize} defaultSize={panelSize}>
-          {/* <ChatSidebar
-            chats={chatData}
-            onChatSelect={(chatId) => console.log("Selected chat:", chatId)}
-          /> */}
-          {/* <Settings /> */}
-          {/* <ProfileEdit /> */}
-          {/* <GeneralSettings /> */}
-          {/* <AnimationSettings /> */}
-          {/* <NotificationSettings /> */}
-          {/* <DataAndStorageSettings /> */}
-          {/* <PrivacyAndSecurity /> */}
-          {/* <ChatFolder /> */}
-          <DevicesSettings />
+          <div className="relative w-full h-full">
+            <AnimatedLeftPanel panelKey={leftPanel || "chatSidebar"}>
+            {(() => {
+              switch (leftPanel) {
+                case "settings":
+                  return <Settings />;
+                case "profileEdit":
+                  return <ProfileEdit />;
+                case "generalSettings":
+                  return <GeneralSettings />;
+                case "animationSettings":
+                  return <AnimationSettings />;
+                case "notificationSettings":
+                  return <NotificationSettings />;
+                case "dataAndStorageSettings":
+                  return <DataAndStorageSettings />;
+                case "privacyAndSecurity":
+                  return <PrivacyAndSecurity />;
+                case "chatFolder":
+                  return <ChatFolder />;
+                case "devicesSettings":
+                  return <DevicesSettings />;
+                default:
+                  return (
+                    <ChatSidebar
+                      chats={chatData}
+                      onChatSelect={(chatId) =>
+                        console.log("Selected chat:", chatId)
+                      }
+                    />
+                  );
+              }
+            })()}
+            </AnimatedLeftPanel>
+          </div>
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel

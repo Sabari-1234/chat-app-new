@@ -8,22 +8,22 @@ import {
 } from "@/components/ui/input-otp";
 import CenteredPageLayout from "@/components/shared/CenteredPageLayout";
 import CircularIconButton from "@/components/shared/CircularIconButton";
+import { Text } from "@/components/shared/Text";
+import SectionWrapper from "@/components/shared/SectionWrapper";
 
 const OTP = () => {
   return (
     <CenteredPageLayout contentClassName="gap-6">
       <div className="flex items-center gap-4">
-        <h1 className="text-4xl font-extrabold tracking-tight text-balance">
+        <Text variant="4xl" as="h1">
           +91 9080240564
-        </h1>
+        </Text>
         <CircularIconButton icon={<GrEdit />} />
       </div>
-      <div className="flex flex-col items-center">
-        <p className="text-sm text-muted-foreground">
-          We have sent you a message in Chat
-        </p>
-        <p className=" text-muted-foreground">with the code.</p>
-      </div>
+      <SectionWrapper variant="columnCenter">
+        <Text>We have sent you a message in Chat</Text>
+        <Text>with the code.</Text>
+      </SectionWrapper>
       <InputOTP maxLength={6}>
         <InputOTPGroup>
           <InputOTPSlot index={0} />

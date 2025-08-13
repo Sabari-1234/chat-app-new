@@ -6,6 +6,7 @@ import { Slider } from "./ui/slider";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface NotificationSettingsState {
   webNotifications: boolean;
@@ -20,6 +21,7 @@ interface NotificationSettingsState {
 }
 
 const NotificationSettings: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [soundVolume, setSoundVolume] = useState<number[]>([5]);
 
   const [settings, setSettings] = useState<NotificationSettingsState>({
@@ -39,7 +41,7 @@ const NotificationSettings: React.FC = () => {
   };
 
   return (
-    <PageWrapper title="Notifications" variant="full-width">
+    <PageWrapper title="Notifications" variant="full-width" onBack={() => setLeftPanel("settings")}>
       {/* Web Notifications Section */}
       <SectionWrapper>
         <SectionTitle>Web Notifications</SectionTitle>

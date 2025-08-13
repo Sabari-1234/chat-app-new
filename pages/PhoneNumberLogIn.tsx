@@ -20,15 +20,16 @@ const PhoneNumberLogIn = () => {
       <SelectScrollable />
       <Input type="text" placeholder="Phone Number" className="w-full" />
       <div>
-        <CheckboxField id="terms" title="Keep me signed in" />
+        <CheckboxField
+          id="terms"
+          title="Keep me signed in"
+          className="p-0"
+          hoverEffectNeeded={false}
+        />
       </div>
       <Separator />
-      <Button variant="outline" className="w-full">
-        NEXT
-      </Button>
-      <Button variant="outline" className="w-full">
-        LOG IN WITH QR CODE
-      </Button>
+      <Button>NEXT</Button>
+      <Button>LOG IN WITH QR CODE</Button>
     </AuthLayout>
   );
 };

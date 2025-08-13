@@ -27,15 +27,23 @@ import {
 import IconTextRow from "./shared/IconTextRow";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 const Settings = () => {
+  const { setLeftPanel } = useLeftPanel();
   const plugin = React.useRef(
     Autoplay({ delay: 2000, stopOnInteraction: true })
   );
 
   return (
-    <PageWrapper title="Settings" variant="between" showEditButton={true}>
-      <div className="flex flex-col items-center ">
+    <PageWrapper
+      title="Settings"
+      variant="between"
+      showEditButton={true}
+      onBack={() => setLeftPanel("chatSidebar")}
+      onEdit={() => setLeftPanel("profileEdit")}
+    >
+      <SectionWrapper variant="columnCenter">
         <Carousel
           plugins={[plugin.current]}
           className=" w-[70%]  max-w-xl "
@@ -60,7 +68,7 @@ const Settings = () => {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      </div>
+      </SectionWrapper>
       <Separator />
       <SectionWrapper>
         <IconTextRow
@@ -89,38 +97,38 @@ const Settings = () => {
         <IconTextRow
           icon={<GearSix size={24} />}
           title="General Settings"
-          onClick={() => console.log("General Settings clicked")}
+          onClick={() => setLeftPanel("generalSettings")}
         />
         <IconTextRow
           icon={<Planet size={24} />}
           title="Animation and Performance"
-          onClick={() => console.log("Animation Settings clicked")}
+          onClick={() => setLeftPanel("animationSettings")}
         />
         <IconTextRow
           icon={<Bell size={24} />}
           title="Notification"
-          onClick={() => console.log("Notification clicked")}
+          onClick={() => setLeftPanel("notificationSettings")}
         />
         <IconTextRow
           icon={<Database size={24} />}
           title="Data and Storage"
-          onClick={() => console.log("Data and Storage clicked")}
+          onClick={() => setLeftPanel("dataAndStorageSettings")}
         />
         <IconTextRow
           icon={<LockSimple size={24} />}
           title="Privacy and Security"
-          onClick={() => console.log("Privacy clicked")}
+          onClick={() => setLeftPanel("privacyAndSecurity")}
         />
         <IconTextRow
           icon={<Folders size={24} />}
           title="Chat Folders"
-          onClick={() => console.log("Chat Folders clicked")}
+          onClick={() => setLeftPanel("chatFolder")}
         />
         <IconTextRow
           icon={<DeviceMobile size={24} />}
           title="Active Sessions"
           rightContent={<span className="text-[16px]">5</span>}
-          onClick={() => console.log("Active Sessions clicked")}
+          onClick={() => setLeftPanel("devicesSettings")}
         />
         <IconTextRow
           icon={<Translate size={24} />}

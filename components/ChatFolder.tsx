@@ -9,6 +9,8 @@ import {
 } from "./ui/dropdown-menu";
 import PageWrapper from "./shared/PageWrapper";
 import SectionTitle from "./shared/SectionTitle";
+import SectionWrapper from "./shared/SectionWrapper";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface FolderData {
   id: string;
@@ -35,6 +37,7 @@ interface ChatFolderItemProps extends FolderData {
 }
 
 const ChatFolder: React.FC = () => {
+  const { setLeftPanel } = useLeftPanel();
   const [folders, setFolders] = useState<FolderData[]>([
     { id: "all", name: "All Chats", chatCount: 0, isDefault: true },
     { id: "family", name: "Family", chatCount: 2, emoji: "❤️😊" },
@@ -290,16 +293,16 @@ const ChatFolder: React.FC = () => {
   );
 
   return (
-    <PageWrapper title="Chat Folders" variant="full-width">
+    <PageWrapper title="Chat Folders" variant="full-width" onBack={() => setLeftPanel("settings")}>
           {/* Folder Illustration */}
-          <div className="flex flex-col items-center gap-4 py-8">
+          <SectionWrapper variant="columnCenter" className="gap-4 py-8">
             <AnimatedFolderIcon />
             <div className="text-center max-w-xs">
               <p className="text-muted-foreground text-sm leading-relaxed">
                 Create folders for different groups of chats and quickly switch between them.
               </p>
             </div>
-          </div>
+          </SectionWrapper>
 
           {/* Create New Folder Button */}
           <div className="flex justify-center">

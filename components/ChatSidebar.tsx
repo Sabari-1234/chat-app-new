@@ -46,19 +46,17 @@ const ChatSidebar: React.FC<ChatSidebarProps> = ({
       </div>
       <Separator />
       <ScrollArea className="h-[95%]  rounded-md pt-4">
-        <div>
-          {chats.map((chat) => (
-            <ChatListItem
-              key={chat.id}
-              avatar={chat.avatar}
-              name={chat.name}
-              lastMessage={chat.lastMessage}
-              timestamp={chat.timestamp}
-              unreadCount={chat.unreadCount}
-              onClick={() => onChatSelect?.(chat.id)}
-            />
-          ))}
-        </div>
+        {chats.map((chat) => (
+          <ChatListItem
+            key={chat.id}
+            avatar={chat.avatar}
+            name={chat.name}
+            lastMessage={chat.lastMessage}
+            timestamp={chat.timestamp}
+            unreadCount={chat.unreadCount}
+            onClick={() => onChatSelect?.(chat.id)}
+          />
+        ))}
       </ScrollArea>
     </div>
   );

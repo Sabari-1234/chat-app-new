@@ -33,7 +33,7 @@ const InteractiveItemWrapper: React.FC<InteractiveItemWrapperProps> = ({
   return (
     <Component
       className={cn(
-        "flex items-center gap-4 w-full  cursor-pointer px-2 py-2 rounded-md",
+        "flex items-center gap-4 w-full  cursor-pointer p-2 rounded-md",
         disabled && "opacity-50 cursor-not-allowed",
         hoverEffectNeeded && "hover:bg-accent/50 transition-colors",
         Component === Button && "my-2",

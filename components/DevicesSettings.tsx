@@ -6,12 +6,13 @@ import {
   Globe,
 } from "phosphor-react";
 import { Separator } from "./ui/separator";
-import RadioGroupSetting from "./shared/RadioGroupSetting";
+import SliderSetting from "./shared/SliderSetting";
 import IconTextRow from "./shared/IconTextRow";
 import SectionTitle from "./shared/SectionTitle";
 import SecondarySectionHeading from "./shared/SecondarySectionHeading";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 interface DeviceSession {
   id: string;
@@ -26,7 +27,8 @@ interface DeviceSession {
 }
 
 const DevicesSettings: React.FC = () => {
-  const [terminationPeriod, setTerminationPeriod] = useState<string>("6months");
+  const { setLeftPanel } = useLeftPanel();
+  const [terminationPeriod, setTerminationPeriod] = useState<number>(6);
 
   const currentDevice: DeviceSession = {
     id: "current",
@@ -124,7 +126,7 @@ const DevicesSettings: React.FC = () => {
 
     const subtitle = `${device.appName} ${device.appVersion}${
       device.platform ? `, ${device.platform}` : ""
-    }\n${device.isCurrentDevice ? "– " : ""}${device.location}`;
+    }\n${device.isCurrentDevice ? "– " : ""}`;
 
     const rightContent = device.lastActive ? (
       <div className="text-sm text-muted-foreground">{device.lastActive}</div>
@@ -136,12 +138,25 @@ const DevicesSettings: React.FC = () => {
         title={device.deviceName}
         subtitle={subtitle}
         rightContent={rightContent}
+        subTitleRightContent={device.location}
       />
     );
   };
 
   return (
-    <PageWrapper title="Devices" variant="full-width">
+    <PageWrapper
+      title="Devices"
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
+      {/* Active Sessions Section */}
+      <SectionWrapper>
+        <SectionTitle>Active sessions</SectionTitle>
+        {activeSessions.map((session) => (
+          <DeviceItem key={session.id} device={session} />
+        ))}
+      </SectionWrapper>
+      <Separator />
       {/* THIS DEVICE Section */}
       <SectionWrapper>
         <SectionTitle>This device</SectionTitle>
@@ -154,33 +169,22 @@ const DevicesSettings: React.FC = () => {
           onClick={handleTerminateAllSessions}
         />
       </SectionWrapper>
-
       <Separator />
-
-      {/* Active Sessions Section */}
-      <SectionWrapper>
-        <SectionTitle>Active sessions</SectionTitle>
-        {activeSessions.map((session) => (
-          <DeviceItem key={session.id} device={session} />
-        ))}
-      </SectionWrapper>
-
-      <Separator />
-
       {/* Automatically Terminate Old Sessions Section */}
       <SectionWrapper>
         <SectionTitle>Automatically terminate old sessions</SectionTitle>
-        <SecondarySectionHeading>If inactive for</SecondarySectionHeading>
+        {/* <SecondarySectionHeading>If inactive for</SecondarySectionHeading> */}
 
-        <RadioGroupSetting
+        <SliderSetting
+          label="If inactive for"
           value={terminationPeriod}
-          onValueChange={setTerminationPeriod}
-          options={[
-            { value: "1week", label: "1 week", id: "1week" },
-            { value: "1month", label: "1 month", id: "1month" },
-            { value: "3months", label: "3 months", id: "3months" },
-            { value: "6months", label: "6 months", id: "6months" },
-          ]}
+          min={0}
+          max={12}
+          step={6}
+          defaultValue={[6]}
+          onChange={(value) => setTerminationPeriod(value[0])}
+          labels={["1 month", "6 months", "12 months"]}
+          thresholds={[6, 12]}
         />
       </SectionWrapper>
     </PageWrapper>

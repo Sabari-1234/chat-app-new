@@ -23,10 +23,12 @@ import { Switch } from "@/components/ui/switch";
 import { useRef } from "react";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { useLeftPanel } from "@/contexts/LeftPanelContext";
 
 export function MoreDropdownMenu() {
   const nightModeSwitchRef = useRef<HTMLButtonElement>(null);
   const { theme, setTheme } = useTheme();
+  const { setLeftPanel } = useLeftPanel();
 
   const [isDark, setIsDark] = useState(false);
   const handleNightModeSwitch = (e: React.MouseEvent<HTMLDivElement>) => {
@@ -90,7 +92,7 @@ export function MoreDropdownMenu() {
 
             <p className="md:text-sm md:ms-2 ms-3 text-[16px]">My Stories</p>
           </DropdownMenuItem> */}
-          <DropdownMenuItem className="my-1">
+          <DropdownMenuItem className="my-1" onClick={() => setLeftPanel("settings")}>
             <IoMdSettings className=" size-6 text-icon-foreground" />
 
             <p className="md:text-sm md:ms-2 ms-3 text-[16px]">Settings</p>
