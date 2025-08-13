@@ -67,12 +67,16 @@ const DataAndStorageSettings: React.FC = () => {
     }));
   };
 
-  const getFileSizeText = (size: number) => {
-    return `up to ${size} MB`;
-  };
+  // const getFileSizeText = (size: number) => {
+  //   return `up to ${size} MB`;
+  // };
 
   return (
-    <PageWrapper title="Data and Storage" variant="full-width" onBack={() => setLeftPanel("settings")}>
+    <PageWrapper
+      title="Data and Storage"
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       {/* Auto-download photos Section */}
       <SectionWrapper>
         <SectionTitle>Auto-download photos</SectionTitle>

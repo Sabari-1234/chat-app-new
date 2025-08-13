@@ -9,7 +9,7 @@ import { Separator } from "./ui/separator";
 import SliderSetting from "./shared/SliderSetting";
 import IconTextRow from "./shared/IconTextRow";
 import SectionTitle from "./shared/SectionTitle";
-import SecondarySectionHeading from "./shared/SecondarySectionHeading";
+// import SecondarySectionHeading from "./shared/SecondarySectionHeading";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import { useLeftPanel } from "@/contexts/LeftPanelContext";
@@ -102,26 +102,29 @@ const DevicesSettings: React.FC = () => {
     }
   };
 
-  const getIconBackground = (iconType: string) => {
-    switch (iconType) {
-      case "chrome":
-        return "bg-blue-500";
-      case "android":
-        return "bg-emerald-500";
-      case "web":
-        return "bg-blue-500";
-      case "unknown":
-        return "bg-orange-500";
-      default:
-        return "bg-muted";
-    }
-  };
+  // const getIconBackground = (iconType: string) => {
+  //   switch (iconType) {
+  //     case "chrome":
+  //       return "bg-blue-500";
+  //     case "android":
+  //       return "bg-emerald-500";
+  //     case "web":
+  //       return "bg-blue-500";
+  //     case "unknown":
+  //       return "bg-orange-500";
+  //     default:
+  //       return "bg-muted";
+  //   }
+  // };
 
   const DeviceItem: React.FC<{
     device: DeviceSession;
     showTerminate?: boolean;
     onTerminate?: () => void;
-  }> = ({ device, showTerminate = false, onTerminate }) => {
+  }> = ({
+    device,
+    // showTerminate = false, onTerminate
+  }) => {
     const icon = <>{getDeviceIcon(device.iconType)}</>;
 
     const subtitle = `${device.appName} ${device.appVersion}${

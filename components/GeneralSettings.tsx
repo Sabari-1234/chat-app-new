@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image } from "phosphor-react";
 import { Separator } from "./ui/separator";
-import { Slider } from "./ui/slider";
+// import { Slider } from "./ui/slider";
 import RadioGroupSetting from "./shared/RadioGroupSetting";
 import IconTextRow from "./shared/IconTextRow";
 import SectionTitle from "./shared/SectionTitle";

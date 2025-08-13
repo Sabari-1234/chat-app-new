@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Separator } from "./ui/separator";
 import CheckboxField from "./shared/CheckboxField";
 import SectionTitle from "./shared/SectionTitle";
-import { Slider } from "./ui/slider";
+// import { Slider } from "./ui/slider";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
@@ -41,7 +41,11 @@ const NotificationSettings: React.FC = () => {
   };
 
   return (
-    <PageWrapper title="Notifications" variant="full-width" onBack={() => setLeftPanel("settings")}>
+    <PageWrapper
+      title="Notifications"
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       {/* Web Notifications Section */}
       <SectionWrapper>
         <SectionTitle>Web Notifications</SectionTitle>

@@ -24,40 +24,44 @@ const PrivacyAndSecurity: React.FC = () => {
     setSettings((prev) => ({ ...prev, [setting]: !prev[setting] }));
   };
 
-  const SettingItem: React.FC<{
-    icon: React.ReactNode;
-    title: string;
-    subtitle: string;
-    onClick?: () => void;
-  }> = ({ icon, title, subtitle, onClick }) => (
-    <div
-      className="flex items-center gap-4 py-3 cursor-pointer hover:bg-muted/50 px-2 rounded-md transition-colors"
-      onClick={onClick}
-    >
-      <div className="flex-shrink-0 text-muted-foreground">{icon}</div>
-      <div className="flex-1">
-        <div className="text-[16px] font-medium">{title}</div>
-        <div className="text-sm text-muted-foreground">{subtitle}</div>
-      </div>
-    </div>
-  );
+  // const SettingItem: React.FC<{
+  //   icon: React.ReactNode;
+  //   title: string;
+  //   subtitle: string;
+  //   onClick?: () => void;
+  // }> = ({ icon, title, subtitle, onClick }) => (
+  //   <div
+  //     className="flex items-center gap-4 py-3 cursor-pointer hover:bg-muted/50 px-2 rounded-md transition-colors"
+  //     onClick={onClick}
+  //   >
+  //     <div className="flex-shrink-0 text-muted-foreground">{icon}</div>
+  //     <div className="flex-1">
+  //       <div className="text-[16px] font-medium">{title}</div>
+  //       <div className="text-sm text-muted-foreground">{subtitle}</div>
+  //     </div>
+  //   </div>
+  // );
 
-  const PrivacySettingItem: React.FC<{
-    title: string;
-    subtitle: string;
-    onClick?: () => void;
-  }> = ({ title, subtitle, onClick }) => (
-    <div
-      className="flex flex-col gap-1 py-3 cursor-pointer hover:bg-muted/50  rounded-md transition-colors"
-      onClick={onClick}
-    >
-      <div className="text-[16px] font-medium">{title}</div>
-      <div className="text-sm text-muted-foreground">{subtitle}</div>
-    </div>
-  );
+  // const PrivacySettingItem: React.FC<{
+  //   title: string;
+  //   subtitle: string;
+  //   onClick?: () => void;
+  // }> = ({ title, subtitle, onClick }) => (
+  //   <div
+  //     className="flex flex-col gap-1 py-3 cursor-pointer hover:bg-muted/50  rounded-md transition-colors"
+  //     onClick={onClick}
+  //   >
+  //     <div className="text-[16px] font-medium">{title}</div>
+  //     <div className="text-sm text-muted-foreground">{subtitle}</div>
+  //   </div>
+  // );
 
   return (
-    <PageWrapper title="Privacy and Security" variant="full-width" onBack={() => setLeftPanel("settings")}>
+    <PageWrapper
+      title="Privacy and Security"
+      variant="full-width"
+      onBack={() => setLeftPanel("settings")}
+    >
       {/* Security Section */}
       <SectionWrapper>
         <IconTextRow

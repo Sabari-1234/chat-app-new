@@ -1,7 +1,7 @@
-import React, { Children, useState } from "react";
+// import React, { Children, useState } from "react";
 import { CaretUp, CaretDown } from "phosphor-react";
 import { Separator } from "./ui/separator";
-import { Slider } from "./ui/slider";
+// import { Slider } from "./ui/slider";
 import { Button } from "./ui/button";
 import CheckboxField from "./shared/CheckboxField";
 import SectionTitle from "./shared/SectionTitle";
@@ -10,6 +10,7 @@ import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
 import SliderSetting from "./shared/SliderSetting";
 import { useLeftPanel } from "@/contexts/LeftPanelContext";
+import { useState } from "react";
 
 interface AnimationSettingsState {
   interfaceAnimations: boolean;
@@ -93,15 +94,15 @@ const AnimationSettings: React.FC = () => {
     setSettings((prev) => ({ ...prev, [setting]: !prev[setting] }));
   };
 
-  const getAnimationLevelText = (level: number) => {
-    if (level < 40) return "Power Saving";
-    if (level < 80) return "Nice and Fast";
-    return "Lots of Stuff";
-  };
+  // const getAnimationLevelText = (level: number) => {
+  //   if (level < 40) return "Power Saving";
+  //   if (level < 80) return "Nice and Fast";
+  //   return "Lots of Stuff";
+  // };
 
   return (
-    <PageWrapper 
-      title="Animation And Performance" 
+    <PageWrapper
+      title="Animation And Performance"
       variant="full-width"
       onBack={() => setLeftPanel("settings")}
     >
