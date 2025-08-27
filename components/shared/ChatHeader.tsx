@@ -1,6 +1,8 @@
 import React from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import { cn } from "@/lib/utils";
+import SectionWrapper from "./SectionWrapper";
+import { Text } from "./Text";
 
 interface ChatHeaderProps {
   avatar: {
@@ -20,13 +22,11 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   className,
 }) => {
   return (
-    <div
-      className={cn(
-        "min-h-16 w-full flex items-center justify-between md:mt-5",
-        className
-      )}
+    <SectionWrapper
+      variant={"rowCenterBetween"}
+      className={cn("min-h-16 w-full md:mt-5", className)}
     >
-      <div className="flex items-center w-[calc(100%-2.8rem)]">
+      <SectionWrapper variant={"rowCenter"} className="w-[calc(100%-2.8rem)]">
         <Avatar>
           <AvatarImage
             src={avatar.src}
@@ -35,12 +35,16 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
           />
           <AvatarFallback>{avatar.fallback}</AvatarFallback>
         </Avatar>
-        <p className="ms-2 overflow-hidden text-ellipsis whitespace-nowrap text-lg inline">
+        <Text variant={"large"} className="ms-2 truncate">
           {name}
-        </p>
-      </div>
-      {actions && <div className="flex items-center gap-2">{actions}</div>}
-    </div>
+        </Text>
+      </SectionWrapper>
+      {actions && (
+        <SectionWrapper variant={"rowCenter"} className="gap-2">
+          {actions}
+        </SectionWrapper>
+      )}
+    </SectionWrapper>
   );
 };
 

@@ -1,7 +1,8 @@
 import React from "react";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Label } from "@/components/ui/label";
 import InteractiveItemWrapper from "./InteractiveItemWrapper";
+import { Text } from "./Text";
+import SectionWrapper from "./SectionWrapper";
 
 interface RadioOption {
   value: string;
@@ -28,34 +29,29 @@ const RadioGroupSetting: React.FC<RadioGroupSettingProps> = ({
   const handleValueChange = onValueChange || onChange;
 
   return (
-    <RadioGroup
+    <SectionWrapper
+      as={RadioGroup}
       defaultValue={defaultValue}
       value={value}
       onValueChange={handleValueChange}
-      className="flex flex-col"
     >
       {options.map((option) => (
         <InteractiveItemWrapper key={option.value}>
           <RadioGroupItem
             value={option.value}
             id={option.id}
-            className=" cursor-pointer"
+            className="cursor-pointer"
           />
 
           <div>
-            <Label
-              htmlFor={option.id}
-              className="text-[16px] cursor-pointer font-medium"
-            >
+            <Text variant={"label"} htmlFor={option.id}>
               {option.label}
-            </Label>
-            {option.subtitle && (
-              <p className="text-muted-foreground text-sm">{option.subtitle}</p>
-            )}
+            </Text>
+            {option.subtitle && <Text>{option.subtitle}</Text>}
           </div>
         </InteractiveItemWrapper>
       ))}
-    </RadioGroup>
+    </SectionWrapper>
   );
 };
 

@@ -1,5 +1,7 @@
 import React from "react";
 import InteractiveItemWrapper from "./InteractiveItemWrapper";
+import { Text } from "./Text";
+import SectionWrapper from "./SectionWrapper";
 
 interface IconTextRowProps {
   icon?: React.ReactNode;
@@ -22,6 +24,9 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
   onClick,
   hoverEffectNeeded,
 }) => {
+  const leftTextClassName = "truncate me-2";
+  const rightTextClassName = "shrink-0 me-2";
+
   return (
     <InteractiveItemWrapper
       className={className}
@@ -29,30 +34,24 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
       hoverEffectNeeded={hoverEffectNeeded}
     >
       {icon && <div className="shrink-0 text-icon-foreground">{icon}</div>}
-      <div className="flex flex-col  w-full overflow-hidden">
-        <div className="flex-1 flex justify-between text-left">
-          <p className="text-[16px] truncate text-left overflow-hidden text-ellipsis whitespace-nowrap">
+      <SectionWrapper className="w-full overflow-hidden">
+        <SectionWrapper variant={"row_Between"}>
+          <Text variant={"h4-2"} className={leftTextClassName}>
             {title}
-          </p>
+          </Text>
           {rightContent && (
-            <div className="shrink-0 text-muted-foreground ">
+            <Text as="div" className={rightTextClassName}>
               {rightContent}
-            </div>
+            </Text>
           )}
-        </div>
-        <div className="flex-1 flex justify-between text-left">
-          {subtitle && (
-            <p className="text-muted-foreground text-sm truncate text-left">
-              {subtitle}
-            </p>
-          )}
+        </SectionWrapper>
+        <SectionWrapper variant={"row_Between"}>
+          {subtitle && <Text className={leftTextClassName}>{subtitle}</Text>}
           {subTitleRightContent && (
-            <p className="shrink-0 text-muted-foreground text-sm truncate ">
-              {subTitleRightContent}
-            </p>
+            <Text className={rightTextClassName}>{subTitleRightContent}</Text>
           )}
-        </div>
-      </div>
+        </SectionWrapper>
+      </SectionWrapper>
     </InteractiveItemWrapper>
   );
 };

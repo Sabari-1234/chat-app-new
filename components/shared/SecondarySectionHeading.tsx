@@ -8,7 +8,7 @@ interface SecondarySectionHeadingProps {
 const SecondarySectionHeading: React.FC<SecondarySectionHeadingProps> = ({
   children,
 }) => {
-  return <Text variant="sm" className="p-2">{children}</Text>;
+  return <Text className="p-2">{children}</Text>;
 };
 
 export default SecondarySectionHeading;

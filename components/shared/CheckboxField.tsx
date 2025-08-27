@@ -1,7 +1,8 @@
 import React from "react";
 import { Checkbox } from "../ui/checkbox";
-import { Label } from "../ui/label";
 import InteractiveItemWrapper from "./InteractiveItemWrapper";
+import SectionWrapper from "./SectionWrapper";
+import { Text } from "./Text";
 
 interface CheckboxFieldProps {
   id: string;
@@ -33,9 +34,11 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
 
   const getStatusClass = () => {
     if (showEnabledStatus) {
-      return `text-sm ${checked ? "text-primary" : "text-muted-foreground"}`;
+      return `text-sm ${
+        checked ? "text-primary" : "text-muted-foreground font-semibold"
+      }`;
     }
-    return "text-sm text-muted-foreground";
+    return "text-sm text-muted-foreground font-semibold";
   };
 
   return (
@@ -44,14 +47,12 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({
       className={className}
     >
       <Checkbox id={id} checked={checked} onCheckedChange={onCheckedChange} />
-      <div className="flex flex-col">
-        <Label htmlFor={id} className="text-[16px] cursor-pointer font-medium">
-          {title}
-        </Label>
+      <SectionWrapper>
+        <Text variant={"label"}>{title}</Text>
         {(description || showEnabledStatus) && (
           <span className={getStatusClass()}>{getStatusText()}</span>
         )}
-      </div>
+      </SectionWrapper>
     </InteractiveItemWrapper>
   );
 };
