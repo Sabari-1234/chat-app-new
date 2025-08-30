@@ -2,6 +2,7 @@ import React from "react";
 import InteractiveItemWrapper from "./InteractiveItemWrapper";
 import { Text } from "./Text";
 import SectionWrapper from "./SectionWrapper";
+import { cn } from "@/lib/utils";
 
 interface IconTextRowProps {
   icon?: React.ReactNode;
@@ -12,6 +13,8 @@ interface IconTextRowProps {
   className?: string;
   onClick?: () => void;
   hoverEffectNeeded?: boolean;
+  rightIcon?: React.ReactNode;
+  titleClassName?: string;
 }
 
 const IconTextRow: React.FC<IconTextRowProps> = ({
@@ -23,6 +26,8 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
   className,
   onClick,
   hoverEffectNeeded,
+  rightIcon,
+  titleClassName,
 }) => {
   const leftTextClassName = "truncate me-2";
   const rightTextClassName = "shrink-0 me-2";
@@ -36,7 +41,10 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
       {icon && <div className="shrink-0 text-icon-foreground">{icon}</div>}
       <SectionWrapper className="w-full overflow-hidden">
         <SectionWrapper variant={"row_Between"}>
-          <Text variant={"h4-2"} className={leftTextClassName}>
+          <Text
+            variant={"h4-2"}
+            className={cn(leftTextClassName, titleClassName)}
+          >
             {title}
           </Text>
           {rightContent && (
@@ -52,6 +60,7 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
           )}
         </SectionWrapper>
       </SectionWrapper>
+      {rightIcon && rightIcon}
     </InteractiveItemWrapper>
   );
 };
