@@ -1,4 +1,4 @@
-import { CameraRotate } from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import React from "react";
 import { Separator } from "./ui/separator";
 import Image from "next/image";
@@ -25,7 +25,8 @@ const ProfileEdit = () => {
           height={200}
           className="rounded-full"
         />
-        <CameraRotate
+        <Icon
+          name="CameraRotate"
           size={50}
           className="absolute top-2/5 text-icon-foreground transition-transform duration-300 ease-in-out hover:scale-150 hover:cursor-pointer"
         />

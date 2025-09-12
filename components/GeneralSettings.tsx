@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Image } from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import { Separator } from "./ui/separator";
 // import { Slider } from "./ui/slider";
 import RadioGroupSetting from "./shared/RadioGroupSetting";
@@ -53,7 +53,7 @@ const GeneralSettings: React.FC = () => {
         <SectionTitle>Wallpaper</SectionTitle>
         {/* General Settings Row */}
         <IconTextRow
-          icon={<Image size={24} strokeWidth={1.5} alt="" />}
+          icon={<Icon name="Image" />}
           title="Change Chat Wallpaper"
           onClick={() => console.log("General Settings clicked")}
         />

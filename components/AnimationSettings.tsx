@@ -1,5 +1,5 @@
 // import React, { Children, useState } from "react";
-import { CaretUp, CaretDown } from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import { Separator } from "./ui/separator";
 // import { Slider } from "./ui/slider";
 import { Button } from "./ui/button";
@@ -49,9 +49,9 @@ const ToggleButton: React.FC<ToggleButtonProps> = ({ isExpanded, onClick }) => {
   return (
     <Button variant="ghost" size="icon" onClick={onClick} className="h-8 w-8">
       {isExpanded ? (
-        <CaretUp size={20} className="text-muted-foreground" />
+        <Icon name="CaretUp" size={20} className="text-muted-foreground" />
       ) : (
-        <CaretDown size={20} className="text-muted-foreground" />
+        <Icon name="CaretDown" size={20} className="text-muted-foreground" />
       )}
     </Button>
   );

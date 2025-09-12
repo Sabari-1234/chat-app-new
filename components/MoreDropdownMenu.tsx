@@ -1,29 +1,15 @@
 "use client";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { MdMenuOpen } from "react-icons/md";
-import CircularIconButton from "./shared/CircularIconButton";
-
 import { Switch } from "@/components/ui/switch";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useTheme } from "next-themes";
-import { useEffect, useState } from "react";
 import { useLeftPanel } from "@/contexts/LeftPanelContext";
-import IconTextRow from "./shared/IconTextRow";
+import { Icon } from "./shared/Icon";
 import {
-  Book,
-  CloudMoon,
-  FileArrowDown,
-  GearSix,
-  Plus,
-  UserCircle,
-} from "phosphor-react";
+  GenericDropdownMenu,
+  DropdownMenuSection,
+} from "./shared/GenericDropdownMenu";
 
 export function MoreDropdownMenu() {
   const nightModeSwitchRef = useRef<HTMLButtonElement>(null);
@@ -31,12 +17,13 @@ export function MoreDropdownMenu() {
   const { setLeftPanel } = useLeftPanel();
 
   const [isDark, setIsDark] = useState(false);
+
   const handleNightModeSwitch = () => {
     if (nightModeSwitchRef.current) {
-      nightModeSwitchRef.current?.click(); // Programmatically trigger click
+      nightModeSwitchRef.current?.click();
     }
   };
-  // Sync the switch state with the current theme
+
   useEffect(() => {
     setIsDark(theme === "dark");
   }, [theme]);
@@ -45,14 +32,12 @@ export function MoreDropdownMenu() {
     setTheme(value ? "dark" : "light");
     setIsDark(value);
   };
-  return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <CircularIconButton icon={<MdMenuOpen />} />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-56" align="start">
-        <IconTextRow
-          icon={
+
+  const sections: DropdownMenuSection[] = [
+    {
+      items: [
+        {
+          icon: (
             <Image
               src="/images/logo.png"
               alt="QR Test Image"
@@ -60,42 +45,58 @@ export function MoreDropdownMenu() {
               height={18}
               className="rounded-full size-8"
             />
-          }
-          title="Sabarinathan Shyguyguytguytuytuytuyt"
-        />
-        <DropdownMenuSeparator />
-        <IconTextRow icon={<Plus size={24} />} title="Add Account" />
-        <DropdownMenuSeparator />
-        <DropdownMenuGroup>
-          <IconTextRow
-            icon={<FileArrowDown size={24} />}
-            title="Saved Messages"
-          />
+          ),
+          title: "Sabarinathan Shyguyguytguytuytuytuyt",
+        },
+      ],
+    },
+    {
+      items: [
+        {
+          icon: <Icon name="Plus" />,
+          title: "Add Account",
+        },
+      ],
+    },
+    {
+      items: [
+        {
+          icon: <Icon name="FileArrowDown" />,
+          title: "Saved Messages",
+        },
+        {
+          icon: <Icon name="UserCircle" />,
+          title: "Contacts",
+        },
+        {
+          icon: <Icon name="Book" />,
+          title: "My Stories",
+        },
+        {
+          icon: <Icon name="GearSix" />,
+          title: "Settings",
+          onClick: () => setLeftPanel("settings"),
+        },
+        {
+          icon: <Icon name="CloudMoon" />,
+          title: "Night Mode",
+          rightIcon: (
+            <Switch
+              ref={nightModeSwitchRef}
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              checked={isDark}
+              onCheckedChange={handleToggle}
+            />
+          ),
+          onClick: handleNightModeSwitch,
+        },
+      ],
+    },
+  ];
 
-          <IconTextRow icon={<UserCircle size={24} />} title="Contacts" />
-          <IconTextRow icon={<Book size={24} />} title="My Stories" />
-          <IconTextRow
-            icon={<GearSix size={24} />}
-            title="Settings"
-            onClick={() => setLeftPanel("settings")}
-          />
-          <IconTextRow
-            icon={<CloudMoon size={24} />}
-            title="Night Mode"
-            rightIcon={
-              <Switch
-                ref={nightModeSwitchRef}
-                onClick={(e) => {
-                  e.stopPropagation(); // Prevents parent click from firing when clicking the switch
-                }}
-                checked={isDark}
-                onCheckedChange={handleToggle}
-              />
-            }
-            onClick={handleNightModeSwitch}
-          />
-        </DropdownMenuGroup>
-      </DropdownMenuContent>
-    </DropdownMenu>
+  return (
+    <GenericDropdownMenu triggerIcon={<MdMenuOpen />} sections={sections} />
   );
 }

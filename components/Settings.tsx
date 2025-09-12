@@ -9,21 +9,7 @@ import {
   CarouselPrevious,
 } from "./ui/carousel";
 import { Separator } from "./ui/separator";
-import {
-  At,
-  CalendarBlank,
-  GearSix,
-  Phone,
-  Info,
-  Planet,
-  Bell,
-  Database,
-  LockSimple,
-  Folders,
-  DeviceMobile,
-  Translate,
-  Sticker,
-} from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import IconTextRow from "./shared/IconTextRow";
 import PageWrapper from "./shared/PageWrapper";
 import SectionWrapper from "./shared/SectionWrapper";
@@ -72,22 +58,22 @@ const Settings = () => {
       <Separator />
       <SectionWrapper>
         <IconTextRow
-          icon={<Phone size={24} />}
+          icon={<Icon name="Phone" />}
           title="+91 9080240564"
           subtitle="Phone"
         />
         <IconTextRow
-          icon={<At size={24} />}
+          icon={<Icon name="At" />}
           title="@mr.360AndVk"
           subtitle="Username"
         />
         <IconTextRow
-          icon={<Info size={24} />}
+          icon={<Icon name="Info" />}
           title="dont bsjdbj sdbfj sbdjsbd kjbskjdbj jhjhjhj jhjh fgfgfhfhgjhghgjgjg more text that overflows the 2-line limit intentionally"
           subtitle="Bio"
         />
         <IconTextRow
-          icon={<CalendarBlank size={24} />}
+          icon={<Icon name="CalendarBlank" />}
           title="August 5 (22 years old)"
           subtitle="Date of Birth"
         />
@@ -95,51 +81,51 @@ const Settings = () => {
       <Separator />
       <SectionWrapper>
         <IconTextRow
-          icon={<GearSix size={24} />}
+          icon={<Icon name="GearSix" />}
           title="General Settings"
           onClick={() => setLeftPanel("generalSettings")}
         />
         <IconTextRow
-          icon={<Planet size={24} />}
+          icon={<Icon name="Planet" />}
           title="Animation and Performance"
           onClick={() => setLeftPanel("animationSettings")}
         />
         <IconTextRow
-          icon={<Bell size={24} />}
+          icon={<Icon name="Bell" />}
           title="Notification"
           onClick={() => setLeftPanel("notificationSettings")}
         />
         <IconTextRow
-          icon={<Database size={24} />}
+          icon={<Icon name="Database" />}
           title="Data and Storage"
           onClick={() => setLeftPanel("dataAndStorageSettings")}
         />
         <IconTextRow
-          icon={<LockSimple size={24} />}
+          icon={<Icon name="LockSimple" />}
           title="Privacy and Security"
           onClick={() => setLeftPanel("privacyAndSecurity")}
         />
         <IconTextRow
-          icon={<Folders size={24} />}
+          icon={<Icon name="Folders" />}
           title="Chat Folders"
           onClick={() => setLeftPanel("chatFolder")}
         />
         <IconTextRow
-          icon={<DeviceMobile size={24} />}
+          icon={<Icon name="DeviceMobile" />}
           title="Active Sessions"
           rightContent={<span className="text-[16px]">5</span>}
           onClick={() => setLeftPanel("devicesSettings")}
         />
         <IconTextRow
-          icon={<Translate size={24} />}
+          icon={<Icon name="Translate" />}
           title="Languages"
           rightContent={<span className="text-[16px]">English</span>}
-          onClick={() => console.log("Languages clicked")}
+          onClick={() => setLeftPanel("languageSettings")}
         />
         <IconTextRow
-          icon={<Sticker size={24} />}
+          icon={<Icon name="Sticker" />}
           title="Stickers and Emoji"
-          onClick={() => console.log("Stickers clicked")}
+          onClick={() => setLeftPanel("stickerAndEmoji")}
         />
       </SectionWrapper>
     </PageWrapper>

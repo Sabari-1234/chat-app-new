@@ -19,7 +19,9 @@ type LeftPanelType =
   | "dataAndStorageSettings"
   | "privacyAndSecurity"
   | "chatFolder"
-  | "devicesSettings";
+  | "devicesSettings"
+  | "languageSettings"
+  | "stickerAndEmoji";
 
 type NavigationDirection = "forward" | "backward";
 
@@ -60,6 +62,8 @@ export const LeftPanelProvider: React.FC<LeftPanelProviderProps> = ({
       privacyAndSecurity: 2,
       chatFolder: 2,
       devicesSettings: 2,
+      languageSettings: 2,
+      stickerAndEmoji: 2,
     }),
     []
   );

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { UserMinus, Key, ShieldCheck } from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import { Separator } from "./ui/separator";
 import CheckboxField from "./shared/CheckboxField";
 import SectionTitle from "./shared/SectionTitle";
@@ -65,19 +65,19 @@ const PrivacyAndSecurity: React.FC = () => {
       {/* Security Section */}
       <SectionWrapper>
         <IconTextRow
-          icon={<UserMinus size={24} />}
+          icon={<Icon name="UserMinus" />}
           title="Blocked Users"
           subtitle="5"
         />
 
         <IconTextRow
-          icon={<Key size={24} />}
+          icon={<Icon name="Key" />}
           title="Passcode Lock"
           subtitle="Off"
         />
 
         <IconTextRow
-          icon={<ShieldCheck size={24} />}
+          icon={<Icon name="ShieldCheck" />}
           title="Two-Step Verification"
           subtitle="On"
         />

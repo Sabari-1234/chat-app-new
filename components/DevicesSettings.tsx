@@ -1,10 +1,5 @@
 import React, { useState } from "react";
-import {
-  MinusCircle,
-  GoogleChromeLogo,
-  AndroidLogo,
-  Globe,
-} from "phosphor-react";
+import { Icon } from "./shared/Icon";
 import { Separator } from "./ui/separator";
 import SliderSetting from "./shared/SliderSetting";
 import IconTextRow from "./shared/IconTextRow";
@@ -92,13 +87,13 @@ const DevicesSettings: React.FC = () => {
   const getDeviceIcon = (iconType: string) => {
     switch (iconType) {
       case "chrome":
-        return <GoogleChromeLogo size={24} />;
+        return <Icon name="GoogleChromeLogo" />;
       case "android":
-        return <AndroidLogo size={24} />;
+        return <Icon name="AndroidLogo" />;
       case "web":
-        return <Globe size={24} />;
+        return <Icon name="Globe" />;
       default:
-        return <Globe size={24} />;
+        return <Icon name="Globe" />;
     }
   };
 
@@ -167,7 +162,7 @@ const DevicesSettings: React.FC = () => {
 
         {/* Terminate All Other Sessions Button */}
         <IconTextRow
-          icon={<MinusCircle className="size-6" />}
+          icon={<Icon name="MinusCircle" />}
           title="Terminate All Other Sessions"
           onClick={handleTerminateAllSessions}
         />

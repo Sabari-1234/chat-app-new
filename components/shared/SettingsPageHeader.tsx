@@ -1,5 +1,5 @@
 import React from "react";
-import { Backspace, Pencil } from "phosphor-react";
+import { Icon } from "./Icon";
 import { Separator } from "@/components/ui/separator";
 import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
@@ -58,22 +58,22 @@ const SettingsPageHeader: React.FC<SettingsPageHeaderProps> = ({
     <>
       <div className={cn(settingsHeaderVariants({ variant }), className)}>
         {showBackButton && (
-          <Backspace
+          <Icon
+            name="Backspace"
             size={25}
             className={cn(
               "text-icon-foreground shrink-0 hover:cursor-pointer",
               variant === "centered" && "my-2"
             )}
-            strokeWidth={1.5}
             onClick={onBack}
           />
         )}
         <h2 className={titleVariants({ variant })}>{title}</h2>
         {variant === "between" && showEditButton && (
-          <Pencil
+          <Icon
+            name="Pencil"
             size={25}
             className="text-icon-foreground shrink-0 hover:cursor-pointer"
-            strokeWidth={1.5}
             onClick={onEdit}
           />
         )}

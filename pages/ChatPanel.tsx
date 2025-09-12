@@ -8,9 +8,7 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import ChatHeader from "@/components/shared/ChatHeader";
-import { AiOutlineMore } from "react-icons/ai";
 import { BsEmojiWink } from "react-icons/bs";
-import { RiAttachment2 } from "react-icons/ri";
 import { BsSend } from "react-icons/bs";
 import ChatSidebar from "@/components/ChatSidebar";
 import CircularIconButton from "@/components/shared/CircularIconButton";
@@ -26,6 +24,10 @@ import ChatFolder from "@/components/ChatFolder";
 import DevicesSettings from "@/components/DevicesSettings";
 import { useLeftPanel } from "@/contexts/LeftPanelContext";
 import AnimatedLeftPanel from "@/components/shared/AnimatedLeftPanel";
+import LanguageSettings from "@/components/LanguageSettings";
+import StickerAndEmoji from "@/components/StickerAndEmoji";
+import MoreOptions from "@/components/chatPage/MoreOptions";
+import Attachments from "@/components/chatPage/Attachments";
 
 const chatData = Array.from({ length: 50 }).map((_, i) => ({
   id: `chat-${i}`,
@@ -97,37 +99,41 @@ const ChatPanel: React.FC = () => {
         <ResizablePanel key={panelSize} defaultSize={panelSize}>
           <div className="relative w-full h-full">
             <AnimatedLeftPanel panelKey={leftPanel || "chatSidebar"}>
-            {(() => {
-              switch (leftPanel) {
-                case "settings":
-                  return <Settings />;
-                case "profileEdit":
-                  return <ProfileEdit />;
-                case "generalSettings":
-                  return <GeneralSettings />;
-                case "animationSettings":
-                  return <AnimationSettings />;
-                case "notificationSettings":
-                  return <NotificationSettings />;
-                case "dataAndStorageSettings":
-                  return <DataAndStorageSettings />;
-                case "privacyAndSecurity":
-                  return <PrivacyAndSecurity />;
-                case "chatFolder":
-                  return <ChatFolder />;
-                case "devicesSettings":
-                  return <DevicesSettings />;
-                default:
-                  return (
-                    <ChatSidebar
-                      chats={chatData}
-                      onChatSelect={(chatId) =>
-                        console.log("Selected chat:", chatId)
-                      }
-                    />
-                  );
-              }
-            })()}
+              {(() => {
+                switch (leftPanel) {
+                  case "settings":
+                    return <Settings />;
+                  case "profileEdit":
+                    return <ProfileEdit />;
+                  case "generalSettings":
+                    return <GeneralSettings />;
+                  case "animationSettings":
+                    return <AnimationSettings />;
+                  case "notificationSettings":
+                    return <NotificationSettings />;
+                  case "dataAndStorageSettings":
+                    return <DataAndStorageSettings />;
+                  case "privacyAndSecurity":
+                    return <PrivacyAndSecurity />;
+                  case "chatFolder":
+                    return <ChatFolder />;
+                  case "devicesSettings":
+                    return <DevicesSettings />;
+                  case "languageSettings":
+                    return <LanguageSettings />;
+                  case "stickerAndEmoji":
+                    return <StickerAndEmoji />;
+                  default:
+                    return (
+                      <ChatSidebar
+                        chats={chatData}
+                        onChatSelect={(chatId) =>
+                          console.log("Selected chat:", chatId)
+                        }
+                      />
+                    );
+                }
+              })()}
             </AnimatedLeftPanel>
           </div>
         </ResizablePanel>
@@ -144,11 +150,7 @@ const ChatPanel: React.FC = () => {
                 fallback: "CN",
               }}
               name="sabarinathanhsdghsdgsdbnsvdhdsvbvdfvdghvfhdvfhdvfhvdbfhdsbfhbdshfgh"
-              actions={
-                <CircularIconButton
-                  icon={<AiOutlineMore size={25} strokeWidth={3} />}
-                />
-              }
+              actions={<MoreOptions />}
             />
             <Separator />
             <div className="transition-all duration-300 w-full overflow-y-auto pt-4 h-[85vh]">
@@ -176,10 +178,11 @@ const ChatPanel: React.FC = () => {
                 placeholder="Type your message here."
                 className=" max-h-40 resize-none md:mb-11 mb-5 mt-2 md:py-4 py-3 px-12 w-[calc(100%-2.8rem)]"
               />
-              <CircularIconButton
+              {/* <CircularIconButton
                 icon={<RiAttachment2 />}
                 className="absolute md:bottom-[3.4rem] bottom-[1.7rem] right-13"
-              />
+              /> */}
+              <Attachments />
               <CircularIconButton
                 icon={<BsSend />}
                 className="absolute right-0 md:bottom-[3.4rem] bottom-[1.7rem]"

@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 
 interface IconTextRowProps {
   icon?: React.ReactNode;
-  title: string;
+  title?: string;
   subtitle?: string;
   rightContent?: React.ReactNode;
   subTitleRightContent?: React.ReactNode;
