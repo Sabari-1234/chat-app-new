@@ -30,7 +30,7 @@ const Attachments = () => {
     <GenericDropdownMenu
       triggerIcon={<RiAttachment2 />}
       sections={sections}
-      className="absolute md:bottom-[3.4rem] bottom-[1.7rem] right-13"
+      className="absolute md:bottom-[3.3rem] bottom-[1.7rem] right-13"
     />
   );
 };

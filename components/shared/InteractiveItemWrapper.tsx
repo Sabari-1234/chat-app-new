@@ -17,6 +17,7 @@ interface InteractiveItemWrapperProps {
   hoverEffectNeeded?: boolean;
   variant?: VariantType;
   isButton?: boolean;
+  ref?: React.RefCallback<HTMLDivElement | HTMLButtonElement>;
 }
 
 const InteractiveItemWrapper: React.FC<InteractiveItemWrapperProps> = ({
@@ -27,6 +28,7 @@ const InteractiveItemWrapper: React.FC<InteractiveItemWrapperProps> = ({
   hoverEffectNeeded = true,
   variant = "outline",
   isButton = false,
+  ref,
 }) => {
   const Component = isButton ? Button : "div";
 
@@ -41,6 +43,7 @@ const InteractiveItemWrapper: React.FC<InteractiveItemWrapperProps> = ({
       )}
       onClick={!disabled ? onClick : undefined}
       {...(Component === Button && { variant })}
+      ref={ref}
     >
       {children}
     </Component>

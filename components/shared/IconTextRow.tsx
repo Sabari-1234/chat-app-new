@@ -15,6 +15,8 @@ interface IconTextRowProps {
   hoverEffectNeeded?: boolean;
   rightIcon?: React.ReactNode;
   titleClassName?: string;
+  titleVariant?: "row_Between" | "row_Center";
+  ref?: React.RefCallback<HTMLDivElement | HTMLButtonElement>;
 }
 
 const IconTextRow: React.FC<IconTextRowProps> = ({
@@ -28,6 +30,8 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
   hoverEffectNeeded,
   rightIcon,
   titleClassName,
+  titleVariant = "row_Between",
+  ref,
 }) => {
   const leftTextClassName = "truncate me-2";
   const rightTextClassName = "shrink-0 me-2";
@@ -37,10 +41,11 @@ const IconTextRow: React.FC<IconTextRowProps> = ({
       className={className}
       onClick={onClick}
       hoverEffectNeeded={hoverEffectNeeded}
+      ref={ref}
     >
       {icon && <div className="shrink-0 text-icon-foreground">{icon}</div>}
       <SectionWrapper className="w-full overflow-hidden">
-        <SectionWrapper variant={"row_Between"}>
+        <SectionWrapper variant={titleVariant}>
           <Text
             variant={"h4-2"}
             className={cn(leftTextClassName, titleClassName)}

@@ -24,7 +24,7 @@ const ChatHeader: React.FC<ChatHeaderProps> = ({
   return (
     <SectionWrapper
       variant={"rowCenterBetween"}
-      className={cn("min-h-16 w-full md:mt-5", className)}
+      className={cn("min-h-16 w-full md:mt-8", className)}
     >
       <SectionWrapper variant={"rowCenter"} className="w-[calc(100%-2.8rem)]">
         <Avatar>

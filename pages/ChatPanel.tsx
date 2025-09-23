@@ -5,13 +5,7 @@ import {
   ResizablePanel,
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
-import { Separator } from "@/components/ui/separator";
-import { Textarea } from "@/components/ui/textarea";
-import ChatHeader from "@/components/shared/ChatHeader";
-import { BsEmojiWink } from "react-icons/bs";
-import { BsSend } from "react-icons/bs";
 import ChatSidebar from "@/components/ChatSidebar";
-import CircularIconButton from "@/components/shared/CircularIconButton";
 import { useMediaQuery } from "usehooks-ts";
 import ProfileEdit from "@/components/ProfileEdit";
 import Settings from "@/components/Settings";
@@ -26,8 +20,8 @@ import { useLeftPanel } from "@/contexts/LeftPanelContext";
 import AnimatedLeftPanel from "@/components/shared/AnimatedLeftPanel";
 import LanguageSettings from "@/components/LanguageSettings";
 import StickerAndEmoji from "@/components/StickerAndEmoji";
-import MoreOptions from "@/components/chatPage/MoreOptions";
-import Attachments from "@/components/chatPage/Attachments";
+import ChatPage from "@/components/ChatPage";
+import ChatInfo from "@/components/ChatInfo";
 
 const chatData = Array.from({ length: 50 }).map((_, i) => ({
   id: `chat-${i}`,
@@ -139,56 +133,14 @@ const ChatPanel: React.FC = () => {
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel
-          defaultSize={100 - panelSize}
+          defaultSize={100 - 2 * panelSize}
           className="flex justify-center"
         >
-          <div className="flex flex-col items-center xl:w-[50%] lg:w-[60%] md:w-[80%]  w-[90%] max-h-[100dvh] min-w-[350px]">
-            <ChatHeader
-              avatar={{
-                src: "https://github.com/shadcn.png",
-                alt: "@shadcn",
-                fallback: "CN",
-              }}
-              name="sabarinathanhsdghsdgsdbnsvdhdsvbvdfvdghvfhdvfhdvfhvdbfhdsbfhbdshfgh"
-              actions={<MoreOptions />}
-            />
-            <Separator />
-            <div className="transition-all duration-300 w-full overflow-y-auto pt-4 h-[85vh]">
-              <div className=" w-full flex flex-col items-start">
-                <p className="text-left border w-fit p-2 rounded-lg">
-                  hello how are you
-                </p>
-                <div className=" border-l h-3 transform rotate-300 origin-top-left"></div>
-              </div>
-              <div className=" w-full flex flex-col items-end">
-                <p className="text-right border w-fit p-2 rounded-lg">
-                  hello how are you
-                </p>
-                <div className=" border-l h-3 transform rotate-60 origin-top-right"></div>
-              </div>
-            </div>
-
-            <Separator />
-            <div className="w-full relative flex items-center">
-              <CircularIconButton
-                icon={<BsEmojiWink />}
-                className="absolute md:bottom-[3.4rem] bottom-[1.7rem] left-2"
-              />
-              <Textarea
-                placeholder="Type your message here."
-                className=" max-h-40 resize-none md:mb-11 mb-5 mt-2 md:py-4 py-3 px-12 w-[calc(100%-2.8rem)]"
-              />
-              {/* <CircularIconButton
-                icon={<RiAttachment2 />}
-                className="absolute md:bottom-[3.4rem] bottom-[1.7rem] right-13"
-              /> */}
-              <Attachments />
-              <CircularIconButton
-                icon={<BsSend />}
-                className="absolute right-0 md:bottom-[3.4rem] bottom-[1.7rem]"
-              />
-            </div>
-          </div>
+          <ChatPage />
+        </ResizablePanel>
+        <ResizableHandle />
+        <ResizablePanel defaultSize={panelSize}>
+          <ChatInfo />
         </ResizablePanel>
       </ResizablePanelGroup>
     </div>
